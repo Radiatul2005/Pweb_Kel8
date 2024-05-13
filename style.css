@@ -1,0 +1,171 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: white;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    max-width: 100%; /* Lebar maksimal halaman */
+    margin: 0 auto; /* Memastikan halaman berada di tengah */
+    overflow-x: hidden; /* Mencegah scrolling horizontal */
+}
+.login-container {
+    background-color: white;
+    color: black;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+    margin-right: -600px;
+    height: 100vh;
+    width: 400px;
+    display: flex; /* Menjadikan konten dalam .login-container sebagai flex container */
+    flex-direction: column; /* Menjadikan konten berada dalam satu kolom */
+    justify-content: center; /* Memposisikan konten secara vertikal di tengah */
+    align-items: center; /* Memposisikan konten secara horizontal di tengah */
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family:'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell;
+}
+.login-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    transition: padding 0.2s ease;
+}
+.login-container .username-label,
+.login-container .password-label {
+    position: absolute;
+    left: 10px;
+    top: 0;
+    background-color: white;
+    padding: 0 5px;
+    transition: all 0.2s ease;
+}
+.login-container input[type="text"]:focus,
+.login-container input[type="password"]:focus {
+    padding-top: 15px;
+}
+.login-container input[type="text"]:focus ~ .username-label,
+.login-container input[type="password"]:focus ~ .password-label {
+    top: -15px;
+    font-size: 12px;
+}
+.login-container input[type="text"]::placeholder,
+.login-container input[type="password"]::placeholder {
+    color: #999;
+    font-size: 14px;
+    padding-top: 15px;
+}
+.login-container input[type="submit"] {
+    width: 100%;
+    padding: 5px;
+    background-color: white;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#username, #password
+{
+    border-radius:10px;
+    border-width: 1px;
+    height: 33px;
+}
+.login-page 
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.hijau
+{
+    margin-left: auto;
+}
+.hijau img 
+{
+    width: 700px;
+    height: 100vh;
+    margin-left: 850px;
+}
+.log
+{
+    margin-right: -190px;
+    text-align: center;
+}
+#formLogin
+{
+    width: 300px;
+}
+.in
+{
+    margin-top: -10px;
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell;
+    font-size: small;
+    text-align: center;
+}
+#ButtonLogin
+{
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(to right, #294B29, #DBE7C9);
+}
+#ButtonGoogle
+{
+    width: 170px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell;
+    color: black;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    background-color: white;
+    margin-top: -140px;
+}
+.other
+{
+    padding-top: 5px;
+    font-weight: normal;
+    padding-bottom: 10px;
+}
+p strong {
+    font-weight: bold;
+}
+.other button#ButtonGoogle {
+    margin-top: 2px; /* Ubah nilai sesuai kebutuhan Anda */
+}
+.input-container {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    left: 13px; /* Sesuaikan posisi ikon */
+    top: 15px;
+    transform: translateY(-50%);
+    width: 15px; /* Sesuaikan ukuran ikon */
+    height: 15px;
+    opacity: 0.7;
+}
+
