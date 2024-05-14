@@ -11,9 +11,9 @@
         <div class="login-container">
             <div class="log">
                 <h2>Login</h2>
-                <form action="login.php" method="POST" id="formLogin">
+                <form action="/login" method="POST" id="formLogin">
                     <div class="input-container">
-                        <img src="\image\foto\username.png" class="input-icon" alt="Logo">
+                        <img src="/image/foto/username.png" class="input-icon" alt="Logo">
                         <input type="text" id="username" name="username" class="username-input" placeholder="Username" style="padding-left:35px;">
                     </div>
                     <div class="input-container">
@@ -24,11 +24,14 @@
                 </form>
                
                 <div class="in">
-                <button id="ButtonLogin" onclick="alert('Button clicked!')">Login Now</button>
-                <div class="other">
-                    <p><strong>Login</strong> with Others</p>
-                <button id="ButtonGoogle" onclick="alert('Button clicked!')"><img src="https://www.pngall.com/wp-content/uploads/13/Google-Logo.png" width="13px" style="padding-right: 15px;" alt="Google Logo"><strong>Login</strong> with Google</button>
-                </div>
+                    <button id="ButtonLogin" onclick="alert('Button clicked!')">Login Now</button>
+                    <div class="other">
+                        <p><strong>Login</strong> with Others</p>
+                        <button id="ButtonGoogle" onclick="alert('Button clicked!')">
+                            <img src="https://www.pngall.com/wp-content/uploads/13/Google-Logo.png" width="13px" style="padding-right: 15px;" alt="Google Logo">
+                            <strong>Login</strong> with Google
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
