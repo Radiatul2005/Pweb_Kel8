@@ -1,8 +1,84 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
 
-a {
-  color: #00B7FF;
+body {
+  background-color:#294B29;
+}
+
+.container{
+  width: 90vw;
+  max-width: 600px;
+  padding: 2em 1.5em;
+  background-color: whitesmoke;
+  margin: 1em auto;
+  border-radius: 0.5em;
+}
+
+h4{
+  font-size: 1.5em;
+}
+
+.input-section {
+  margin: 0.5em 0;
+}
+
+label, .error-message{
+  display: block;
+  font-size: 1em;
+}
+
+label{
+  margin-bottom: 0.5em;
+  font-weight: 500;
+}
+
+.error-message{
+  margin-top: 0.2em;
+}
+
+input, button{
+  display: block;
+  outline: none;
+  width: 100%;
+  padding: 0.5em;
+  margin-top: 2em;
+}
+
+input {
+  padding: 1em 0.5em;
+  border: 1.5px solid white;
+}
+
+
+button{
+  font-size: 1em;
+  background-color: aquamarine;
+  border: none;
+  color: black;
+  padding: 0.8em;
+}
+
+.required-color{
+  color: red;
+}
+
+.error {
+  border-color: red;
+}
+
+.valid{
+  border-color: #37a137;
+}
+
+.hide {
+  display: none;
+}
+@media only screen and(max-width:450px){
+  .container{
+    font-size: 14px;
+  }
 }
