@@ -31,7 +31,11 @@ app.use('/login', loginRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+const port = 3000; // Port yang akan digunakan (dalam kasus ini, port 3000)
 
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
