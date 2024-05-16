@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/editprofile', editRouter);
-app.use('/loginRouter', loginRouter); // Use loginRouter for /login
+app.use('/login', loginRouter); // Correct route to /login
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
