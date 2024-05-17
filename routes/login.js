@@ -1,8 +1,12 @@
 const express = require('express');
-const router = express.Router();
+const bcrypt = require('bcryptjs');
+const session = require('express-session');
 const mysql = require('mysql');
+const path = require('path');
 
-// MySQL connection setup
+const router = express.Router();
+
+// Konfigurasi koneksi ke MySQL
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -10,46 +14,57 @@ const db = mysql.createConnection({
   database: 'login'
 });
 
+// Menghubungkan ke database
 db.connect((err) => {
   if (err) {
-    console.error('Database connection failed:', err.stack);
+    console.error('Error connecting to MySQL:', err);
     return;
   }
-  console.log('Connected to database.');
+  console.log('Connected to MySQL database');
 });
 
-// GET login page
+// Endpoint untuk halaman login
 router.get('/', (req, res) => {
-  res.render('login', { title: 'Login' });
+  res.render('login'); // Ensure this is rendering the login.ejs file
 });
 
-// POST login
+// Endpoint untuk login
 router.post('/', (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
+  const { username, password } = req.body;
 
-  if (username && password) {
-    db.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (error, results) => {
-      if (error) {
-        console.error('Error in database query:', error);
-        res.render('login', { title: 'Login', errorMessage: 'An error occurred. Please try again later.' });
-        return;
+  // Memeriksa apakah username dan password telah disediakan
+  if (!username || !password) {
+    return res.status(400).send('Please provide username and password');
+  }
+
+  // Memeriksa kecocokan username di database
+  db.query('SELECT * FROM users WHERE username = ?', [username], (err, results) => {
+    if (err) {
+      console.error('Error in database query:', err);
+      return res.status(500).send('An error occurred. Please try again later.');
+    }
+
+    // Jika tidak ada hasil dari query
+    if (results.length === 0) {
+      return res.status(401).send('Incorrect Username and/or Password!');
+    }
+
+    // Memeriksa apakah password cocok
+    bcrypt.compare(password, results[0].password, (err, isMatch) => {
+      if (err) {
+        console.error('Error comparing passwords:', err);
+        return res.status(500).send('An error occurred. Please try again later.');
       }
 
-      if (results.length > 0) {
-        // Jika login berhasil, atur sesi dan arahkan ke halaman dashboard
+      if (isMatch) {
         req.session.loggedin = true;
         req.session.username = username;
         res.redirect('/dashboard');
       } else {
-        // Jika login gagal, tampilkan pesan kesalahan di halaman login yang sama
-        res.render('login', { title: 'Login', errorMessage: 'Incorrect Username and/or Password!', username: username });
+        res.status(401).send('Incorrect Username and/or Password!');
       }
     });
-  } else {
-    // Jika username atau password kosong, tampilkan pesan kesalahan di halaman login yang sama
-    res.render('login', { title: 'Login', errorMessage: 'Please enter Username and Password!' });
-  }
+  });
 });
 
 module.exports = router;
