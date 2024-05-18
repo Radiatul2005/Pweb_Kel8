@@ -30,7 +30,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'))); // Middleware untuk file statis
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Use routes
@@ -38,7 +38,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/editprofile', editRouter);
 app.use('/login', loginRouter);
-app.use('/dashboard', dashboardRouter); // Gunakan route dashboardRouter untuk /dashboard
+app.use('/dashboard', dashboardRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -51,14 +51,6 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   res.status(err.status || 500);
   res.render('error');
-});
-
-app.get('/dashboard', (req, res) => {
-  if (req.session.loggedin) {
-    res.render('dashboard', { username: req.session.username });
-  } else {
-    res.redirect('/login'); // Arahkan pengguna ke halaman login jika belum login
-  }
 });
 
 // Set port and start server

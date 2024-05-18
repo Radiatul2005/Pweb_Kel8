@@ -25,7 +25,7 @@ db.connect((err) => {
 
 // Endpoint untuk halaman login
 router.get('/', (req, res) => {
-  res.render('login'); // Ensure this is rendering the login.ejs file
+  res.render('login'); // Pastikan ini merender file login.ejs
 });
 
 // Endpoint untuk login
@@ -57,8 +57,11 @@ router.post('/', (req, res) => {
       }
 
       if (isMatch) {
+        // Setting session variables
         req.session.loggedin = true;
         req.session.username = username;
+        console.log(req.session); // Logging session after successful login
+        // Redirect to dashboard after successful login
         res.redirect('/dashboard');
       } else {
         res.status(401).send('Incorrect Username and/or Password!');
