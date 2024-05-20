@@ -11,6 +11,8 @@ const usersRouter = require('./routes/users');
 const editRouter = require('./routes/edit');
 const loginRouter = require('./routes/login');
 const dashboardRouter = require('./routes/dashboard'); // Import route dashboard
+const profileRouter = require('./routes/Profile'); // Import route profile
+
 
 const app = express();
 
@@ -39,6 +41,9 @@ app.use('/users', usersRouter);
 app.use('/editprofile', editRouter);
 app.use('/login', loginRouter);
 app.use('/dashboard', dashboardRouter);
+app.use('/profile', profileRouter); // Gunakan route profileRouter untuk /profile
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
