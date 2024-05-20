@@ -1,0 +1,53 @@
+body {
+	background-color: #294B29;
+}
+
+.container {
+	display: flex;
+	margin: 50px 10px;
+}
+
+.profile {
+	flex: 1;
+	margin-right: 10px;
+	background-color: whitesmoke;
+	box-shadow: rgba(0, 0, 0, 0.16) opx 1px 4px;
+	border-radius: 5px;
+	height: max-content;
+}
+
+.profile-header {
+	display: flex;
+	margin-left: 15px;
+}
+
+.profile-img{
+	width: 60px;
+	height: 60px;
+	border-radius: 10px;
+	margin: 10px;
+}
+
+.profile-tittle {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 20px;
+}
+
+.profile-email {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-size: 14px;
+}
+
+.menu {
+	margin: 0 20px;
+}
+
+.menu-link {
+	display: block;
+	text-decoration: none;
+	color: blueviolet;
+	font-family: 'Courier New', Courier, monospace;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 10px;
+}
