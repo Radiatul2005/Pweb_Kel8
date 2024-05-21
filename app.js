@@ -5,14 +5,14 @@ const logger = require('morgan');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
+
 // Import routes
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const editRouter = require('./routes/edit');
 const loginRouter = require('./routes/login');
 const dashboardRouter = require('./routes/dashboard'); // Import route dashboard
-const profileRouter = require('./routes/Profile'); // Import route profile
-
+const profileRouter = require('./routes/profile'); // Import route profile
 
 const app = express();
 
