@@ -7,5 +7,4 @@ router.get('/', (req, res) => {
   res.render('profile'); // Pastikan Anda memiliki file profile.ejs di folder views
 });
 
-
 module.exports = router;
