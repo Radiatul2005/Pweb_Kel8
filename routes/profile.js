@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('profile');
+// Tambahkan middleware untuk memeriksa sesi pengguna (jika diperlukan)
+router.get('/', (req, res) => {
+  // Render halaman profil
+  res.render('profile'); // Pastikan Anda memiliki file profile.ejs di folder views
 });
+
 
 module.exports = router;

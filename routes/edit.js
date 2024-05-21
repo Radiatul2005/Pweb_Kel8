@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
 router.put('/editprofile', function(req, res, next) {
   const { first_name, last_name, email, phone, password, verify_password } = req.body;
-  if (!first_name || !last_name || !email || !phone || !password || !verify_password) {
+  if (!profile_pic || !first_name || !last_name || !email || !phone || !street ) {
       return res.status(400).send('Input Invalid');
   }
 

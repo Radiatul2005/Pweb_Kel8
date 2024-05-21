@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/stylesheets/Loginstyle.css">
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-container">
+            <div class="log">
+                <h2>Login</h2>
+                <form action="/login" method="POST" id="formLogin">
+                    <div class="input-container">
+                        <img src="/image/foto/username.png" class="input-icon" alt="Logo">
+                        <input type="text" id="username" name="username" class="username-input" placeholder="Username" style="padding-left:35px;">
+                    </div>
+                    <div class="input-container">
+                        <img src="/image/foto/password.png" class="input-icon" alt="Logo">
+                        <input type="password" id="password" name="password" class="password-input" placeholder="Password" style="padding-left:35px;">
+                    </div>
+                    <input type="submit" value="LOGIN">
+                </form>
+               
+                <div class="in">
+                    <button id="ButtonLogin" onclick="alert('Button clicked!')">Login Now</button>
+                    <div class="other">
+                        <p><strong>Login</strong> with Others</p>
+                        <button id="ButtonGoogle" onclick="alert('Button clicked!')">
+                            <img src="https://www.pngall.com/wp-content/uploads/13/Google-Logo.png" width="13px" style="padding-right: 15px;" alt="Google Logo">
+                            <strong>Login</strong> with Google
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hijau">
+            <img src="/image/foto/login.png">
+        </div>
+    </div>
+</body>
+</html>
