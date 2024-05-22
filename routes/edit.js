@@ -6,4 +6,17 @@ router.get('/', function(req, res, next) {
   res.render('editprofile');
 });
 
+router.put('/editprofile', function(req, res, next) {
+  const { first_name, last_name, email, phone, password, verify_password } = req.body;
+  if (!profile_pic || !first_name || !last_name || !email || !phone || !street ) {
+      return res.status(400).send('Input Invalid');
+  }
+
+  if (password !== verify_password) {
+      return res.status(400).send('Password dan konfirmasi password tidak cocok');
+  }
+
+  res.redirect('/profile');
+});
+
 module.exports = router;

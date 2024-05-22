@@ -8,48 +8,42 @@
 </head>
 <body>
     <div class="container">
-        <form autocomplete="off">
+        <form action="editprofile" method="put">
             <h4>Edit Profile</h4>
+
             <div class="input-section">
-                <label>Nama Depan<span class="required-color">*</span></label>
-                <input type="text" placeholder="Masukkan Nama Depan" id="first-name-input" required>
-                <span id="first-name-error" class="hide required-color error-message">Inputan tidak valid</span>
-                <span id="empty-first-name" class="hide required-color error-message">Nama depan tidak boleh kosong</span>
+                <label>Profile Picture</label>
+                <input type="file" id="profilPic" name="profile_pic" accept="image/*" onchange="previeImage(event)">
+            </div>
+
+            <div class="input-section">
+                <label>Nama Depan</label>
+                <input type="text" placeholder="Masukkan Nama Depan Baru" id="first-name-input" name="first_name">
+        
             </div>
             <div class="input-section">
-                <label>Nama Belakang<span class="required-color">*</span></label>
-                <input type="text" placeholder="Masukkan Nama Belakang" id="last-name-input" required>
-                <span id="last-name-error" class="hide required-color error-message">Inputan tidak valid</span>
-                <span id="empty-last-name" class="hide required-color error-message">Nama belakang tidak boleh kosong</span>
+                <label>Nama Belakang</label>
+                <input type="text" placeholder="Masukkan Nama Belakang Baru" id="last-name-input" name="last_name">
             </div>
+
             <div class="input-section">
-                <label>Email<span class="required-color">*</span></label>
-                <input type="email" placeholder="Masukkan Email" id="email" required>
-                <span id="email-error" class="hide required-color error-message">Inputan tidak valid</span>
-                <span id="empty-email" class="hide required-color error-message">Email tidak boleh kosong</span>
+                <label>Email</label>
+                <input type="email" placeholder="Masukkan Email Baru" id="email" name="email">
             </div>
+
             <div class="input-section">
-                <label>Nomor Telepeon<span class="required-color">*</span></label>
-                <input type="tel" placeholder="Masukkan Nomor telepon" id="phone" required>
-                <span id="phone-error" class="hide required-color error-message">Nomor telepon harus terdiri minimal 11 digit</span>
-                <span id="empty-phone" class="hide required-color error-message">Nomor telepon tidak boleh kosong</span>
+                <label>Nomor Telepon</label>
+                <input type="tel" placeholder="Masukkan Nomor Telepon Baru" id="phone" name="phone">
             </div>
+
             <div class="input-section">
-                <label>Password<span class="required-color">*</span></label>
-                <input type="password" placeholder="Masukkan Password" id="password" required>
-                <span id="password-error" class="hide required-color error-message">Password harus 8 karakter</span>
-                <span id="empty-password" class="hide required-color error-message">Password tidak boleh kosong</span>
+                <label>Alamat</label>
+                <input type="text" placeholder="Masukkan Alamat Baru" id="street" name="street">
             </div>
-            <div class="input-section">
-                <label>Konfirmasi password<span class="required-color">*</span></label>
-                <input type="password" placeholder="Ulangi password" id="verify-password" required>
-                <span id="verify-password-error" class="hide required-color error-message">Inputan tidak sesuai dengan password sebelumnya</span>
-                <span id="empty-verify-password" class="hide required-color error-message">Password tidak boleh kosong</span>
-            </div>
+
             <button id="submit-button">Save Changes</button>
         </form>
     </div>
-    <script src="/editprofile.js"></script>
           
 </body>
 </html>
