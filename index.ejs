@@ -30,7 +30,7 @@
 <body>
     <div class="container">
         <h1>Ubah Password</h1>
-        <form id="changePasswordForm" action="/change-password" method="POST">
+        <form id="changePasswordForm" action="/ubah_pasword" method="POST">
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
@@ -81,7 +81,7 @@
             const confirmPassword = document.getElementById('confirmPassword').value;
 
             // Mengirim data form ke server menggunakan fetch API
-            const response = await fetch('/change-password', {
+            const response = await fetch('/ubah_pasword', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
