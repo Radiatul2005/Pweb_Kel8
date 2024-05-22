@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.post('/change-password', (req, res) => {
+app.post('/ubah_pasword', (req, res) => {
     const { username, oldPassword, newPassword, confirmPassword } = req.body;
 
     // Memeriksa apakah password baru dan konfirmasi password cocok

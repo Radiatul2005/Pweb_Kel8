@@ -12,7 +12,7 @@ const loginRouter = require('./routes/login');
 const dashboardRouter = require('./routes/dashboard');
 const profileRouter = require('./routes/profile');
 const editRouter = require('./routes/edit');
-
+const ubahpaswordRouter = require('./routes/ubah_pasword');
 
 const app = express();
 
@@ -42,6 +42,7 @@ app.use('/login', loginRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/profile', profileRouter);
 app.use('/editprofile', editRouter)
+app.use('/ubah_pasword', ubahpaswordRouter)
 
 // Tangkap 404 dan teruskan ke penangan kesalahan
 app.use(function(req, res, next) {
