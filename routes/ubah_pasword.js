@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'ubah_pasword'
+    database: 'login'
 });
 
 // Menghubungkan ke database
@@ -29,13 +29,13 @@ const usersTable = `
 `;
 
 // Membuat tabel jika belum ada
-connection.query(usersTable, (err) => {
-    if (err) {
-        console.error('Error creating users table:', err);
-        return;
-    }
-    console.log('Users table created or already exists');
-});
+// connection.query(usersTable, (err) => {
+//     if (err) {
+//         console.error('Error creating users table:', err);
+//         return;
+//     }
+//     console.log('Users table created or already exists');
+// });
 
 // Route to handle password change
 router.post('/', (req, res) => {
