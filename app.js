@@ -13,6 +13,7 @@ const dashboardRouter = require('./routes/dashboard');
 const profileRouter = require('./routes/profile');
 const editRouter = require('./routes/edit');
 const ubahpaswordRouter = require('./routes/ubah_pasword');
+// const db = require('./routes/createtable');
 
 const app = express();
 
@@ -20,7 +21,8 @@ const app = express();
 app.use(session({
   secret: 'secret',
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: { secure: false }
 }));
 
 // Setup view engine
