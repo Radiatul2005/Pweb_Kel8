@@ -5,7 +5,7 @@ const logger = require('morgan');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
-// Impor rute
+// Import routes
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
@@ -13,11 +13,11 @@ const dashboardRouter = require('./routes/dashboard');
 const profileRouter = require('./routes/profile');
 const editRouter = require('./routes/edit');
 const ubahpaswordRouter = require('./routes/ubah_pasword');
-// const db = require('./routes/createtable');
+const formRouter = require('./routes/form');  // Import the new form route
 
 const app = express();
 
-// Setup sesi
+// Setup session
 app.use(session({
   secret: 'secret',
   resave: true,
@@ -26,6 +26,7 @@ app.use(session({
 }));
 
 // Setup view engine
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -37,21 +38,25 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Gunakan rute
+// Use routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/profile', profileRouter);
-app.use('/editprofile', editRouter)
-app.use('/ubah_pasword', ubahpaswordRouter)
+app.use('/editprofile', editRouter);
+app.use('/ubah_pasword', ubahpaswordRouter);
+app.use('/', formRouter); // Use the new form route
 
-// Tangkap 404 dan teruskan ke penangan kesalahan
+app.get('/form', (req, res) => {
+  res.render('partials/form');
+});
+// Catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// Penangan kesalahan
+// Error handler
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -59,12 +64,12 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// Tetapkan port dan jalankan server
+// Set port and start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server berjalan di http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 }).on('error', (err) => {
-  console.error(`Server gagal dimulai karena kesalahan: ${err.message}`);
+  console.error(`Failed to start server: ${err.message}`);
 });
 
 module.exports = app;
