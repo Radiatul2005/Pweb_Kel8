@@ -6,7 +6,7 @@ const path = require('path');
 
 const router = express.Router();
 
-// Konfigurasi koneksi ke MySQL
+// Membuat koneksi ke MySQL
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -14,7 +14,7 @@ const db = mysql.createConnection({
   database: 'login'
 });
 
-// Menghubungkan ke database
+// Menghubungkan ke database dan tampilkan pesan/ menangani kesalahhan
 db.connect((err) => {
   if (err) {
     console.error('Error connecting to MySQL:', err);
@@ -25,9 +25,10 @@ db.connect((err) => {
 
 
 
-// Tambahkan middleware untuk memeriksa sesi pengguna (jika diperlukan)
+
+// route halaman profile
 router.get('/', (req, res) => {
-  // Render halaman profil
+  // mengambil data dari sesi pengguna
   const data = {
       username : req.session.username,
       first_name : req.session.first_name,
@@ -36,7 +37,7 @@ router.get('/', (req, res) => {
       no_hp : req.session.no_hp,
       alamat : req.session.alamat,
   }
-  res.render('profile', data); // Pastikan Anda memiliki file profile.ejs di folder views
+  res.render('profile', data); // merender halaman profile menggunakan ejs dan mengirim data ke template tersebut
 });
 
 module.exports = router;
