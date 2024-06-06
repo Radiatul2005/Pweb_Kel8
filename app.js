@@ -26,7 +26,6 @@ app.use(session({
 }));
 
 // Setup view engine
-
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -46,11 +45,8 @@ app.use('/dashboard', dashboardRouter);
 app.use('/profile', profileRouter);
 app.use('/editprofile', editRouter);
 app.use('/ubah_pasword', ubahpaswordRouter);
-app.use('/', formRouter); // Use the new form route
+app.use('/form', formRouter); // Use the new form route
 
-app.get('/form', (req, res) => {
-  res.render('partials/form');
-});
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

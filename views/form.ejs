@@ -7,71 +7,72 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    
 </head>
-<body class="bg-gray-200" >
+<body class="bg-gray-200">
     <%- include('partials/navbar.ejs') %>
-        <div class="flex flex-col flex-1 overflow-hidden" style="margin-left: 280px; margin-top: -520px;">
-            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-                <div class="container px-6 py-8 mx-auto">
-                    <h3 class="text-3xl font-medium text-gray-700">Form Pendaftaran</h3>
-
-                    <div class="mt-8">
-                        <div class="p-4 bg-white rounded-lg shadow-md">
+    <div class="flex flex-col flex-1 overflow-hidden" style="margin-left: 280px; margin-top: -520px;">
+        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+            <div class="container px-6 py-8 mx-auto">
+                <h3 class="text-3xl font-medium text-gray-700">Form Pendaftaran</h3>
+                <div class="mt-8">
+                    <div class="p-4 bg-white rounded-lg shadow-md">
+                        <form action="/form" method="POST">
                             <div class="mt-4">
                                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-1">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Nama</label>
-                                        <input type="text" class="w-full mt-1 form-input" placeholder="Nama Mahasiswa" style="border-color: #426142; border-width: 1px; border-radius: 7px; height: 40px; padding-left: 5px;">
+                                        <input type="text" name="name" class="w-full mt-1 form-input" placeholder="Nama Mahasiswa" style="border-color: #426142; border-width: 1px; border-radius: 7px; height: 40px; padding-left: 5px;">
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">NIM</label>
-                                        <input type="text" class="w-full mt-1 form-input" placeholder="Nomor Induk Mahasiswa" style="border-color: #426142; border-width: 1px; border-radius: 7px; height: 40px; padding-left: 5px;">
+                                        <input type="text" name="nim" class="w-full mt-1 form-input" placeholder="Nomor Induk Mahasiswa" style="border-color: #426142; border-width: 1px; border-radius: 7px; height: 40px; padding-left: 5px;">
                                     </div>
-                                    <label class="block text-sm font-medium text-gray-700" for="comboBox">Fakultas</label>
-                                        <select id="comboBox" name="comboBox" style="color:gray; border-color: #426142; border-width: 1px; border-radius: 7px; height: 40px; padding-left: 5px; margin-top: -10px;">
-                                            <option value="option6">Fakultas Teknologi Informasi</option>
-                                            <option value="option1">Fakultas Kedokteran</option>
-                                            <option value="option2">Fakultas Pertanian</option>
-                                            <option value="option3">Fakultas Peternakan</option>
-                                            <option value="option4">Fakultas Matematika dan Ilmu Pengetahuan Alam</option>
-                                            <option value="option5">Fakultas Ilmu Sosial Ilmu Politik</option>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700" for="comboBox">Fakultas</label>
+                                        <select id="comboBox" name="fakultas" style="color:gray; border-color: #426142; border-width: 1px; border-radius: 7px; height: 40px; padding-left: 5px; margin-top: -10px;">
+                                            <option value="Fakultas Teknologi Informasi">Fakultas Teknologi Informasi</option>
+                                            <option value="Fakultas Kedokteran">Fakultas Kedokteran</option>
+                                            <option value="Fakultas Pertanian">Fakultas Pertanian</option>
+                                            <option value="Fakultas Peternakan">Fakultas Peternakan</option>
+                                            <option value="Fakultas Matematika dan Ilmu Pengetahuan Alam">Fakultas Matematika dan Ilmu Pengetahuan Alam</option>
+                                            <option value="Fakultas Ilmu Sosial Ilmu Politik">Fakultas Ilmu Sosial Ilmu Politik</option>
                                         </select>
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700">Semester</label>
-                                            <input type="number" min="1" class="w-full mt-1 form-input" placeholder="Semester" style="border-color: #426142; border-width: 1px; border-radius: 7px; height: 40px; padding-left: 5px;">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700">Dosen Pembimbing 1</label>
-                                            <input type="text" class="w-full mt-1 form-input" placeholder="Dosen Pembimbing 1" style="border-color: #426142; border-width: 1px; border-radius: 7px; height: 40px; padding-left: 5px;">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700">Dosen Pembimbing 2</label>
-                                            <input type="text" class="w-full mt-1 form-input" placeholder="Dosen Pembimbing 1" style="border-color: #426142; border-width: 1px; border-radius: 7px; height: 40px; padding-left: 5px;">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700">Judul Skripsi</label>
-                                            <input type="text" class="w-full mt-1 form-input" placeholder="Judul Skripsi" style="border-color: #426142; border-width: 1px; border-radius: 7px; height: 40px; padding-left: 5px;">
-                                        </div>
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700">Deskripsi Singkat</label>
-                                            <input type="text" class="w-full mt-1 form-input" placeholder="Deskripsi" style="border-color: #426142; border-width: 1px; border-radius: 7px; height: 100px; padding-left: 5px;">
-                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Semester</label>
+                                        <input type="number" name="semester" min="1" class="w-full mt-1 form-input" placeholder="Semester" style="border-color: #426142; border-width: 1px; border-radius: 7px; height: 40px; padding-left: 5px;">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Dosen Pembimbing 1</label>
+                                        <input type="text" name="dosenPembimbing1" class="w-full mt-1 form-input" placeholder="Dosen Pembimbing 1" style="border-color: #426142; border-width: 1px; border-radius: 7px; height: 40px; padding-left: 5px;">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Dosen Pembimbing 2</label>
+                                        <input type="text" name="dosenPembimbing2" class="w-full mt-1 form-input" placeholder="Dosen Pembimbing 2" style="border-color: #426142; border-width: 1px; border-radius: 7px; height: 40px; padding-left: 5px;">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Judul Skripsi</label>
+                                        <input type="text" name="judulSkripsi" class="w-full mt-1 form-input" placeholder="Judul Skripsi" style="border-color: #426142; border-width: 1px; border-radius: 7px; height: 40px; padding-left: 5px;">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Deskripsi Singkat</label>
+                                        <input type="text" name="deskripsi" class="w-full mt-1 form-input" placeholder="Deskripsi" style="border-color: #426142; border-width: 1px; border-radius: 7px; height: 100px; padding-left: 5px;">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4 sm:grid-cols-2">
-                            <div class="flex justify-end mt-8" style="justify-content: left;">
-                                <button class="px-4 py-2 text-white rounded-md hover:bg-indigo-500" style="background-color: #D02222;">Cancel</button>
+                            <div class="grid grid-cols-2 gap-4 sm:grid-cols-2">
+                                <div class="flex justify-end mt-8" style="justify-content: left;">
+                                    <button type="button" class="px-4 py-2 text-white rounded-md hover:bg-indigo-500" style="background-color: #D02222;">Cancel</button>
+                                </div>
+                                <div class="flex justify-end mt-8" style="justify-content: right;">
+                                    <button type="submit" class="px-4 py-2 text-white rounded-md hover:bg-indigo-500" style="background-color: #4D6A49;">Daftar</button>
+                                </div>
                             </div>
-                            <div class="flex justify-end mt-8" style="justify-content: right;">
-                                <button class="px-4 py-2 text-white rounded-md hover:bg-indigo-500" style="background-color: #4D6A49;">Daftar</button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
-            </main>
-        </div>
+            </div>
+        </main>
     </div>
 </body>
 </html>
