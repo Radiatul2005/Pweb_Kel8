@@ -32,11 +32,11 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   // Extract form data from request body
-  const { name, nim, fakultas, semester, dosenPembimbing1, dosenPembimbing2, judulSkripsi, deskripsi } = req.body;
+  const { name, nim, fakultas, semester, waktu, dosenPembimbing1, dosenPembimbing2, judulSkripsi, deskripsi } = req.body;
 
   // Construct SQL query
-  const query = 'INSERT INTO pendaftaran (name, nim, fakultas, semester, dosenPembimbing1, dosenPembimbing2, judulSkripsi, deskripsi) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-  const params = [name, nim, fakultas, semester, dosenPembimbing1, dosenPembimbing2, judulSkripsi, deskripsi];
+  const query = 'INSERT INTO form (name, nim, fakultas, semester, waktu, dosenPembimbing1, dosenPembimbing2, judulSkripsi, deskripsi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  const params = [name, nim, fakultas, semester,  waktu, dosenPembimbing1, dosenPembimbing2, judulSkripsi, deskripsi];
 
   // Log the SQL query and parameters
   console.log('Executing SQL query:', query);
