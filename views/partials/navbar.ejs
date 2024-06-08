@@ -6,14 +6,14 @@
     <title>bar</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
+<body style="height: 1100px;">
 <div>
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
   
   <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
       <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed inset-0 z-20 transition-opacity bg-black opacity-50 lg:hidden"></div>
   
-      <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform lg:translate-x-0 lg:static lg:inset-0" style="background-color: #426142; height: 1017px;">
+      <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform lg:translate-x-0 lg:static lg:inset-0" style="background-color: #426142; height: 1100px;">
           <div class="flex items-center justify-center mt-8">
               <div class="flex items-center">
                   <img class="w-12 h-12" viewBox="0 0 512 512" fill="none" src="./image/foto/SidangKU.png" style="width: 120px; height: auto; margin-left: -70px; margin-top: -30px;">
