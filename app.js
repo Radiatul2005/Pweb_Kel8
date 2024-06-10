@@ -15,6 +15,7 @@ const editRouter = require('./routes/edit');
 const ubahpaswordRouter = require('./routes/ubah_pasword');
 const formRouter = require('./routes/form');  // Import the new form route
 const riwayatRouter = require('./routes/riwayat');
+const detailRiwayatRouter = require('./routes/detailRiwayat');
 
 const app = express();
 
@@ -48,6 +49,7 @@ app.use('/editprofile', editRouter);
 app.use('/ubah_pasword', ubahpaswordRouter);
 app.use('/form', formRouter); // Use the new form route
 app.use('/riwayat', riwayatRouter);
+app.use('/detailRiwayat', detailRiwayatRouter);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
