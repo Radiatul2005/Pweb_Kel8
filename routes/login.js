@@ -6,10 +6,8 @@ const path = require('path');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-// Membuat instance router dari express
 const router = express.Router();
 
-// Konfigurasi koneksi ke MySQL
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -17,7 +15,6 @@ const db = mysql.createConnection({
   database: 'login'
 });
 
-// Menghubungkan ke database
 db.connect((err) => {
   if (err) {
     console.error('Error connecting to MySQL:', err);
@@ -26,36 +23,30 @@ db.connect((err) => {
   console.log('Connected to MySQL database');
 });
 
-// Endpoint untuk halaman login
 router.get('/', (req, res) => {
-  res.render('login'); // Pastikan ini merender file login.ejs
+  res.render('login');
 });
 
-// Endpoint untuk login
 router.post('/', (req, res) => {
   const { username, password } = req.body;
 
-  // Memeriksa apakah username dan password telah disediakan
   if (!username || !password) {
     return res.status(400).send('Please provide username and password');
   }
 
-  // Memeriksa kecocokan username di database
   db.query('SELECT * FROM users WHERE username = ?', [username], async (err, results) => {
     if (err) {
       console.error('Error in database query:', err);
       return res.status(500).send('An error occurred. Please try again later.');
     }
 
-    // Jika tidak ada hasil dari query
     if (results.length === 0) {
       return res.status(401).send('Incorrect Username and/or Password');
     }
 
-    // Memeriksa apakah password cocok dengan menggunakan bcrypt
     const match = await bcrypt.compare(password, results[0].password);
     if (match) {
-      // Buat token JWT
+
       const token = jwt.sign(
         { 
           id: results[0].id,
@@ -67,13 +58,11 @@ router.post('/', (req, res) => {
           alamat: results[0].alamat,
         },
         process.env.JWT_SECRET_TOKEN,
-        { expiresIn: 86400 } // Masa berlaku token (24 jam)
+        { expiresIn: 86400 } 
       );
 
-      // Set cookie dengan token
       res.cookie("token", token, { httpOnly: true });
 
-      // Menyimpan variabel session
       req.session.loggedin = true;
       req.session.username = results[0].username;
       req.session.first_name = results[0].first_name;
@@ -82,10 +71,9 @@ router.post('/', (req, res) => {
       req.session.no_hp = results[0].no_hp;
       req.session.alamat = results[0].alamat;
 
-      // Redirect to dashboard after successful login
       return res.redirect('/dashboard');
+
     } else {
-      // Password tidak cocok
       return res.status(401).send('Incorrect Username and/or Password');
     }
   });

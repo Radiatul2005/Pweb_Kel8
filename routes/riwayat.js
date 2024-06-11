@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
 
-// Buat koneksi ke database
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -18,7 +17,6 @@ connection.connect(function(err) {
   console.log('Connected to MySQL database');
 });
 
-// Middleware to check if user is authenticated
 function isAuthenticated(req, res, next) {
   if (req.session.loggedin) {
     next();
@@ -27,16 +25,14 @@ function isAuthenticated(req, res, next) {
   }
 }
 
-// Mengambil data dari tabel riwayat berdasarkan username
 router.get('/', isAuthenticated, function(req, res, next) {
-  const username = req.session.username;  // Ambil username dari sesi
+  const username = req.session.username;  
   connection.query('SELECT * FROM riwayat WHERE username = ?', [username], function (error, results, fields) {
     if (error) {
       console.error('Error executing query: ' + error.stack);
       res.status(500).send('Error executing query');
       return;
     }
-    // Rendering halaman riwayat.ejs dan mengirimkan data jika diperlukan
     res.render('riwayat', { title: 'Riwayat Sidang', data: results });
   });
 });

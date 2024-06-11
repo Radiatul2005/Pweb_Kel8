@@ -15,7 +15,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-200">
+<body class="bg-gray-200" style="background-color: white;">
     <%- include('partials/navbar.ejs') %>
     
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="margin-top: -450px; margin-left: 280px; margin-right: 20px; background: none;">
@@ -26,7 +26,7 @@
                         Sidang Ke-
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Dosen Penguji
+                        Dosen Penguji 1
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Hari/Tanggal
@@ -78,8 +78,44 @@
                             <strong>Dosen Pembimbing :</strong> <%= item.dosen_pembimbing %>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="5" class="px-6 py-2 text-sm text-gray-500 dark:text-gray-400">
+                            <p  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" style="margin-top: 10px; margin-bottom: -25px; color: gray; margin-left: -25px;">Penilaian</p>
+                        </td>
+                    </tr>
+                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <strong>Dosen Penguji 1 :</strong> <%= item.dosen_penguji_1 %>
+                        </td>
+                    </tr>
+                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <strong>Dosen Penguji 2 :</strong> <%= item.dosen_penguji_2 %>
+                        </td>
+                    </tr>
+                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <strong>Dosen Penguji 3 :</strong> <%= item.dosen_penguji_3 %>
+                        </td>
+                    </tr>
+                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <strong>Grade :</strong> <% var averageGrade = (item.dosen_penguji_1 + item.dosen_penguji_2 + item.dosen_penguji_3) / 3; %>
+                            <% if (averageGrade >= 90) { %>
+                                A
+                            <% } else if (averageGrade >= 80) { %>
+                                B
+                            <% } else if (averageGrade >= 70) { %>
+                                C
+                            <% } else { %>
+                                D
+                            <% } %>
+                        </td>
+                    </tr>
+                    
                 <% }); %>
             </tbody>
+            
         </table>
     </div>
 </body>

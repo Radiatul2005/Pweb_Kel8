@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 
-// Buat koneksi ke database
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -18,14 +17,28 @@ connection.connect(function(err) {
   console.log('Connected to MySQL database');
 });
 
-// Mengambil data dari tabel riwayat
 router.get('/', function(req, res, next) {
-  connection.query('SELECT * FROM riwayat', function (error, results, fields) {
+  var username = req.session.username || req.query.username;
+
+  if (!username) {
+    res.status(400).send('Username is required');
+    return;
+  }
+
+  var query = `
+    SELECT r.*, p.dosen_penguji_1, p.dosen_penguji_2, p.dosen_penguji_3 
+    FROM riwayat r
+    LEFT JOIN penilaian p ON r.username = p.username
+    WHERE r.username = ?
+  `;
+
+  connection.query(query, [username], function (error, results, fields) {
     if (error) {
       console.error('Error executing query: ' + error.stack);
+      res.status(500).send('Error executing query');
       return;
     }
-    // Rendering halaman riwayat.ejs dan mengirimkan data jika diperlukan
+
     res.render('detailRiwayat', { title: 'Riwayat Sidang', data: results });
   });
 });
