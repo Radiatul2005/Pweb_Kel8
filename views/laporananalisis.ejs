@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Sidang</title>
+    <link rel="stylesheet" href="/stylesheets/laporananalisisstyle.css">
+</head>
+<body>
+    <%- include('partials/navbartegar.ejs') %>
+    <div class="content">
+        <button class="back-button">Back</button>
+        <h1>List Sidang</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sidang ke</th>
+                        <th>Nilai</th>
+                        <th>Predikat</th>
+                        <th>Hasil Akhir</th>
+                        <th>Detail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>30</td>
+                        <td>D</td>
+                        <td>Tidak Lulus</td>
+                        <td><button class="detail-button">i</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>80</td>
+                        <td>A</td>
+                        <td>Lulus</td>
+                        <td><button class="detail-button">i</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
