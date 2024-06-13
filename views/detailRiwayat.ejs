@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Sidang</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .text-success {
+            color: green;
+        }
+
+        .text-danger {
+            color: red;
+        }
+    </style>
+</head>
+<body class="bg-gray-200" style="background-color: white;">
+    <%- include('partials/navbar.ejs') %>
+    
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="margin-top: -450px; margin-left: 280px; margin-right: 20px; background: none;">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 border-b border-gray-300 dark:border-gray-700">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Sidang Ke-
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Dosen Penguji 1
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Hari/Tanggal
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Hasil Akhir
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(function(item) { %>
+                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <%= item.nomor_sidang %>
+                        </td>
+                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <%= item.dosen_penguji %>
+                        </td>
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <%= new Date(item.hari_tanggal).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+                        </td>
+                        <td class="px-6 py-4 font-medium whitespace-nowrap dark:text-white <% if (item.hasil_akhir === 'Lulus') { %> text-success <% } else { %> text-danger <% } %>">
+                            <%= item.hasil_akhir %>
+                        </td>
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <a href="#" style="color: blue; text-decoration: underline;">View</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="px-6 py-2 text-sm text-gray-500 dark:text-gray-400">
+                            <p  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" style="margin-top: 10px; margin-bottom: -25px; color: gray; margin-left: -25px;">Detail</p>
+                        </td>
+                    </tr>
+                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <strong>Judul Skripsi :</strong> <%= item.judul_skripsi %>
+                        </td>
+                    </tr>
+                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <strong>Fokus Bidang :</strong> <%= item.fokus_bidang %>
+                        </td>
+                    </tr>
+                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <strong>Dosen Pembimbing :</strong> <%= item.dosen_pembimbing %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="px-6 py-2 text-sm text-gray-500 dark:text-gray-400">
+                            <p  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" style="margin-top: 10px; margin-bottom: -25px; color: gray; margin-left: -25px;">Penilaian</p>
+                        </td>
+                    </tr>
+                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <strong>Dosen Penguji 1 :</strong> <%= item.dosen_penguji_1 %>
+                        </td>
+                    </tr>
+                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <strong>Dosen Penguji 2 :</strong> <%= item.dosen_penguji_2 %>
+                        </td>
+                    </tr>
+                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <strong>Dosen Penguji 3 :</strong> <%= item.dosen_penguji_3 %>
+                        </td>
+                    </tr>
+                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <strong>Grade :</strong> <% var averageGrade = (item.dosen_penguji_1 + item.dosen_penguji_2 + item.dosen_penguji_3) / 3; %>
+                            <% if (averageGrade >= 90) { %>
+                                A
+                            <% } else if (averageGrade >= 80) { %>
+                                B
+                            <% } else if (averageGrade >= 70) { %>
+                                C
+                            <% } else { %>
+                                D
+                            <% } %>
+                        </td>
+                    </tr>
+                    
+                <% }); %>
+            </tbody>
+            
+        </table>
+    </div>
+</body>
+</html>
