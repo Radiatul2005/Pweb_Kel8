@@ -4,6 +4,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const flash = require('connect-flash');
+const moment = require('moment');
 
 // Import routes
 const indexRouter = require('./routes/index');
@@ -15,14 +17,11 @@ const editRouter = require('./routes/edit');
 const ubahpaswordRouter = require('./routes/ubah_pasword');
 const formRouter = require('./routes/form');  // Import the new form route
 const riwayatRouter = require('./routes/riwayat');
-<<<<<<< HEAD
 const laporananalisis = require('./routes/laporananalisis');
 const manajemen_jadwal = require('./routes/manajemen_jadwal');
 const evaluasi_nilai = require('./routes/evaluasi_nilai');
 const menyetujui = require('./routes/menyetujui');
-=======
 const detailRiwayatRouter = require('./routes/detailRiwayat');
->>>>>>> aaa554d6e475960cb1c12d35dc493fb4eeecd41a
 
 const app = express();
 
@@ -37,6 +36,14 @@ app.use(session({
 // Setup view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+// Konfigurasi flash messages
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  next();
+});
 
 // Middleware
 app.use(logger('dev'));
@@ -56,14 +63,11 @@ app.use('/editprofile', editRouter);
 app.use('/ubah_pasword', ubahpaswordRouter);
 app.use('/form', formRouter); // Use the new form route
 app.use('/riwayat', riwayatRouter);
-<<<<<<< HEAD
 app.use('/laporananalisis', laporananalisis);
 app.use('/manajemen_jadwal', manajemen_jadwal);
 app.use('/evaluasi_nilai', evaluasi_nilai);
 app.use('/menyetujui', menyetujui);
-=======
 app.use('/detailRiwayat', detailRiwayatRouter);
->>>>>>> aaa554d6e475960cb1c12d35dc493fb4eeecd41a
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
