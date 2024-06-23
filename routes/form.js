@@ -1,14 +1,8 @@
 const express = require('express');
-const bcrypt = require('bcryptjs');
-const session = require('express-session');
 const mysql = require('mysql');
-const path = require('path');
-const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-
 const router = express.Router();
-
 
 const db = mysql.createConnection({
   host: 'localhost',
@@ -25,17 +19,24 @@ db.connect((err) => {
   console.log('Connected to MySQL database');
 });
 
-
-router.get('/', (req, res) => {
-  res.render('form'); 
+// Route untuk menampilkan form dengan waktu sidang yang dipilih
+router.get('/form_pendaftaran/:waktuSidang', (req, res) => {
+  const waktuSidang = decodeURIComponent(req.params.waktuSidang);
+  console.log('waktuSidang:', waktuSidang);  // Tambahkan log untuk memastikan parameter diterima dengan benar
+  res.render('form', { waktuSidang });
 });
 
-router.post('/', (req, res) => {
+// Route untuk menampilkan form tanpa waktu sidang yang dipilih
+router.get('/form', (req, res) => {
+  res.render('form', { waktuSidang: '' }); 
+});
 
+// Route untuk menangani pengiriman form
+router.post('/form', (req, res) => {
   const { name, nim, fakultas, semester, waktu, dosenPembimbing1, dosenPembimbing2, judulSkripsi, deskripsi } = req.body;
 
   const query = 'INSERT INTO form (name, nim, fakultas, semester, waktu, dosenPembimbing1, dosenPembimbing2, judulSkripsi, deskripsi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
-  const params = [name, nim, fakultas, semester,  waktu, dosenPembimbing1, dosenPembimbing2, judulSkripsi, deskripsi];
+  const params = [name, nim, fakultas, semester, waktu, dosenPembimbing1, dosenPembimbing2, judulSkripsi, deskripsi];
 
   console.log('Executing SQL query:', query);
   console.log('Parameters:', params);

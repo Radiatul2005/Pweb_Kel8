@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SidangKU</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-200">
+    <%- include('partials/navbaradmin.ejs') %>
+    <div class="flex flex-col flex-1 overflow-hidden">
+        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200" style="background-color: white;">
+            <div class="container px-6 py-8 mx-auto">
+                <h3 class="text-3xl font-medium text-gray-700" style="background-color: white;">Input Nilai</h3>
+                <div class="mt-8">
+                    <form action="/inputnilai" method="POST">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700" for="comboBox">Nama Mahasiswa</label>
+                            <select class="w-full mt-1 form-input" id="comboBox" name="fakultas" style="color:gray; border-color: #426142; border-width: 1px; border-radius: 7px; height: 40px; padding-left: 5px; margin-top: -10px; margin-top: 3px;">
+                                <option value=""></option>
+                                <% names.forEach(function(name) { %>
+                                    <option value="<%= name.name %>"><%= name.name %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <button type="submit" class="px-4 py-2 text-white rounded-md hover:bg-indigo-500" style="background-color: #4D6A49;">Detail</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -24,7 +24,9 @@ const manajemen_jadwal = require('./routes/manajemen_jadwal');
 const evaluasi_nilai = require('./routes/evaluasi_nilai');
 const menyetujui = require('./routes/menyetujui');
 const detailRiwayatRouter = require('./routes/detailRiwayat');
-
+const inputnilaiRouter = require('./routes/inputnilai');
+const dokumenRouter = require('./routes/dokumen');
+const contohdokumenRouter = require('./routes/contohdokumen');
 const app = express();
 
 // Setup session
@@ -72,6 +74,9 @@ app.use('/manajemen_jadwal', manajemen_jadwal);
 app.use('/evaluasi_nilai', evaluasi_nilai);
 app.use('/menyetujui', menyetujui);
 app.use('/detailRiwayat', detailRiwayatRouter);
+app.use('/inputnilai', inputnilaiRouter);
+app.use('/dokumen', dokumenRouter);
+app.use('/contohdokumen', contohdokumenRouter);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Mahasiswa</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-200">
+    <%- include('partials/navbaradmin.ejs') %>
+    <div class="flex flex-col flex-1 overflow-hidden">
+        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200" style="background-color: white;">
+            <div class="container px-6 py-8 mx-auto">
+                <h3 class="text-3xl font-medium text-gray-700" style="background-color: white;">Detail Mahasiswa</h3>
+                <div class="mt-8">
+                    <table class="table-auto w-full">
+                        <tr>
+                            <td class="px-4 py-2 font-medium text-gray-700">NIM:</td>
+                            <td class="px-4 py-2 text-gray-700"><%= data.nim %></td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 font-medium text-gray-700">Judul Skripsi:</td>
+                            <td class="px-4 py-2 text-gray-700"><%= data.judulSkripsi %></td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 font-medium text-gray-700">Dosen Pembimbing:</td>
+                            <td class="px-4 py-2 text-gray-700"><%= data.dosenPembimbing1 %></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
