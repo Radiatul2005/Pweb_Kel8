@@ -6,7 +6,6 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const moment = require('moment');
-
 // Import routes
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
