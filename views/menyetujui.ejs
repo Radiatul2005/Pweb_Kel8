@@ -3,91 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manajemen Jadwal</title>
+    <title>Menyetujui</title>
     <link rel="stylesheet" href="/stylesheets/menyetujui.css">
 </head>
 <body>
     <%- include('partials/navbaradmin.ejs') %>
     <div class="content">
-        <h1>Persetuan dan Jadwal</h1>
-        <a href="editprofile" class="add-schedule-button">Tambahkan Jadwal</a>
-        <!-- Tabel Buat Jadwal -->
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Jadwal ID</th>
-                        <th>Tanggal Sidang</th>
-                        <th>Ruangan</th>
-                        <th>Status Persetujuan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>      
-        </div>
-        
+        <h1>Persetujuan dan Jadwal</h1>
+    
+        <% if (success_msg) { %>
+            <div class="alert alert-success">
+                <%= success_msg %>
+            </div>
+        <% } %>
+
+        <% if (error_msg) { %>
+            <div class="alert alert-danger">
+                <%= error_msg %>
+            </div>
+        <% } %>
+
         <!-- Tabel Persetujuan Jadwal -->
-        <h1>Jadwal Masuk</h1>
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
                         <th>Jadwal ID</th>
-                        <th>Tanggal Sidang</th>
+                        <th>NIM Mahasiswa</th>
+                        <th>Waktu Sidang</th>
                         <th>Ruangan</th>
-                        <th>Status Persetujuan</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <% jadwalsidang.forEach((jadwal) => { %>
+                        <tr>
+                            <td><%= jadwal.JadwalID %></td>
+                            <td><%= jadwal.NIM %></td>
+                            <td><%= jadwal.WaktuSidang %></td>
+                            <td><%= jadwal.Ruangan %></td>
+                            <td><%= jadwal.Status %></td>
+                            <td>
+                                <% if (jadwal.Status === 'Menunggu Persetujuan') { %>
+                                    <form action="/menyetujui/setujui_jadwal/<%= jadwal.JadwalID %>" method="POST">
+                                        <button type="submit">Setujui</button>
+                                    </form>
+                                <% } else { %>
+                                    <span>Tidak Ada Aksi</span>
+                                <% } %>
+                            </td>
+                        </tr>
+                    <% }); %>
                 </tbody>
             </table>      
         </div>

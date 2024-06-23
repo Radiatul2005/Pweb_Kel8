@@ -3,30 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SidangKU</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
 </head>
-<body class="bg-gray-200">
-    <%- include('partials/navbar.ejs') %>
-    <div class="flex flex-col flex-1 overflow-hidden" style="margin-left: 280px; margin-top: -520px;">
-        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200" style="background-color: white;">
-            <div class="container px-6 py-8 mx-auto">
-                <h3 class="text-3xl font-medium text-gray-700">Welcome...</h3>
-                <div style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px; border-radius: 10%; background-color: white; width: fit-content; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
-                    <div class="flex justify-end mt-8" style="justify-content: left; margin-top: 5px;">
-                        <button type="button" class="px-4 py-2 text-white rounded-md hover:bg-indigo-500" style="background-color: #4D6A49; width : 150px;">Daftar Sidang</button>
-                    </div>
-                    <div class="flex justify-end mt-8" style="justify-content: left;">
-                        <button type="button" class="px-4 py-2 text-white rounded-md hover:bg-indigo-500" style="background-color: #4D6A49; margin-top: -15px; width : 150px;">Jadwal Sidang</button>
-                    </div>
-                    <div class="flex justify-end mt-8" style="justify-content: left;">
-                        <button type="button" class="px-4 py-2 text-white rounded-md hover:bg-indigo-500" style="background-color: #4D6A49; margin-top: -15px; width : 150px;" onclick="window.location.href='/riwayat';">Riwayat Sidang</button>
-                    </div>
+<body>
+    <div class="sidebar">
+        <div class="profile">
+            <img src="profile_picture_url" alt="Profile Picture">
+            <h2>Radiatul Mutmainnah</h2>
+        </div>
+        <%- include('partials/navbartegar.ejs') %>
+    </div>
+    <div class="content">
+        <header>
+            <h1>Welcome, Radiatul Mutmainnah</h1>
+            <p>April 2, 2024</p>
+        </header>
+        <div class="main-content">
+            <div class="overview">
+                <img src="image_url" alt="Building Image">
+                
+                <div class="actions">
+                    <button>Daftar Sidang</button>
+                    <button>Jadwal Sidang</button>
+                    <button>Riwayat Sidang</button>
                 </div>
             </div>
-        </main>
+            
+        </div>
+        <aside>
+            <div class="status">
+                <h2>Status Sidang</h2>
+                <p>Sidang Disetujui</p>
+                <div class="graph">
+                    <!-- Placeholder for graph -->
+                </div>
+            </div>
+            <div class="announcements">
+                <h2>Pengumuman</h2>
+                <ul>
+                    <li>Informasi Teknis sid...</li>
+                    <li>Perubahan Jadwal</li>
+                    <li>Jadwal terbaru sido...</li>
+                    <li>...</li>
+                </ul>
+            </div>
+        </aside>
     </div>
 </body>
 </html>

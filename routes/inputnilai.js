@@ -1,8 +1,14 @@
 const express = require('express');
+const bcrypt = require('bcryptjs');
+const session = require('express-session');
 const mysql = require('mysql');
+const path = require('path');
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+
 const router = express.Router();
+
 
 const db = mysql.createConnection({
   host: 'localhost',
@@ -20,17 +26,16 @@ db.connect((err) => {
 });
 
 
-
 router.get('/', (req, res) => {
-  res.render('form'); // Render halaman dokumen.ejs
+  res.render('inputnilai'); 
 });
 
-// Route untuk menangani pengiriman form
 router.post('/', (req, res) => {
-  const { name, nim, fakultas, semester, waktu, dosenPembimbing1, dosenPembimbing2, judulSkripsi, deskripsi } = req.body;
 
-  const query = 'INSERT INTO form (name, nim, fakultas, semester, waktu, dosenPembimbing1, dosenPembimbing2, judulSkripsi, deskripsi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
-  const params = [name, nim, fakultas, semester, waktu, dosenPembimbing1, dosenPembimbing2, judulSkripsi, deskripsi];
+  const {username, dosen_penguji_1, dosen_penguji_2, dosen_penguji_3  } = req.body;
+
+  const query = 'INSERT INTO penilaian (username, dosen_penguji_1, dosen_penguji_2, dosen_penguji_3 ) VALUES (?, ?, ?, ?)';
+  const params = [username, dosen_penguji_1, dosen_penguji_2, dosen_penguji_3 ];
 
   console.log('Executing SQL query:', query);
   console.log('Parameters:', params);
