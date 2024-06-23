@@ -3,53 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evaluasi dan Penilaian</title>
+    <title>Evaluasi Nilai</title>
     <link rel="stylesheet" href="/stylesheets/evaluasi_nilai.css">
 </head>
 <body>
     <%- include('partials/navbartegar.ejs') %>
     <div class="content">
-        <h1>Evaluasi dan Penilaian</h1>
+        <h1>Evaluasi Nilai</h1>
+
+        <% if (success_msg) { %>
+            <div class="alert alert-success">
+                <%= success_msg %>
+            </div>
+        <% } %>
+
+        <% if (error_msg) { %>
+            <div class="alert alert-danger">
+                <%= error_msg %>
+            </div>
+        <% } %>
+
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>NIP</th>
-                        <th>Nama</th>
+                        <th>Sidang ke</th>
                         <th>Nilai</th>
                         <th>Predikat</th>
-                        <th>Hasil</th>
+                        <th>Hasil Akhir</th>
+                        <th>Waktu Sidang</th>
+                        <th>Detail</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1234567890111213</td>
-                        <td>Dosen A</td>
-                        <td>70</td>
-                        <td>B+</td>
-                        <td>Lulus</td>
-                    </tr>
-                    <tr>
-                        <td>1234567890111213</td>
-                        <td>Dosen B</td>
-                        <td>65</td>
-                        <td>B</td>
-                        <td>Lulus</td>
-                    </tr>
-                    <tr>
-                        <td>1234567890111213</td>
-                        <td>Dosen C</td>
-                        <td>80</td>
-                        <td>A</td>
-                        <td>Lulus</td>
-                    </tr>
-                    <tr>
-                        <td>1234567890111213</td>
-                        <td>Dosen D</td>
-                        <td>70</td>
-                        <td>B+</td>
-                        <td>Lulus</td>
-                    </tr>
+                    <% nilaiSidang.forEach((nilai, index) => { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= nilai.Nilai %></td>
+                            <td><%= nilai.Predikat %></td>
+                            <td><%= nilai.HasilAkhir %></td>
+                            <td><%= nilai.WaktuSidang %></td>
+                            <td><button class="detail-button">i</button></td>
+                        </tr>
+                    <% }); %>
                 </tbody>
             </table>
         </div>

@@ -44,7 +44,7 @@ router.get('/', (req, res) => {
 // Route untuk menangani pengambilan jadwal
 router.post('/ambil_jadwal/:jadwalID', (req, res) => {
     const jadwalID = req.params.jadwalID;
-    const updateQuery = 'UPDATE jadwalsidang SET StatusPersetujuan = "Diambil" WHERE JadwalID = ?';
+    const updateQuery = 'UPDATE jadwalsidang SET Status = "Menunggu Persetujuan" WHERE JadwalID = ?';
     
     db.query(updateQuery, [jadwalID], (err, result) => {
         if (err) {
@@ -62,7 +62,7 @@ router.post('/ambil_jadwal/:jadwalID', (req, res) => {
 // Route untuk menangani undo pengambilan jadwal
 router.post('/undo_ambil_jadwal/:jadwalID', (req, res) => {
     const jadwalID = req.params.jadwalID;
-    const updateQuery = 'UPDATE jadwalsidang SET StatusPersetujuan = "Belum Ada" WHERE JadwalID = ?';
+    const updateQuery = 'UPDATE jadwalsidang SET Status = "Menunggu Persetujuan" WHERE JadwalID = ?';
     
     db.query(updateQuery, [jadwalID], (err, result) => {
         if (err) {

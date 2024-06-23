@@ -95,3 +95,16 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
+
+.detail-button {
+    background-color: #8FBC8F;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50%;
+}

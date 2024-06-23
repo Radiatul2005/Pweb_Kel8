@@ -29,6 +29,7 @@
                 <thead>
                     <tr>
                         <th>Jadwal ID</th>
+                        <th>NIM Mahasiswa</th>
                         <th>Waktu Sidang</th>
                         <th>Ruangan</th>
                         <th>Aksi</th>
@@ -39,6 +40,7 @@
                     <% jadwalsidang.forEach((jadwal) => { %>
                         <tr>
                             <td><%= jadwal.JadwalID %></td>
+                            <td><%= jadwal.NIM %></td>
                             <td>
                                 <script>
                                     document.write(moment('<%= jadwal.WaktuSidang %>').format('YYYY-MM-DD HH:mm:ss'));
@@ -46,19 +48,19 @@
                             </td>
                             <td><%= jadwal.Ruangan %></td>
                             <td>
-                                <% if (jadwal.StatusPersetujuan === 'Belum Ada') { %>
+                                <% if (jadwal.Status === 'Belum Ada') { %>
                                     <form action="/manajemen_jadwal/ambil_jadwal/<%= jadwal.JadwalID %>" method="POST">
                                         <button type="submit">Ambil</button>
                                     </form>
-                                <% } else if (jadwal.StatusPersetujuan === 'Diambil') { %>
+                                <% } else if (jadwal.Status === 'Menunggu Persetujuan') { %>
                                     <form action="/manajemen_jadwal/undo_ambil_jadwal/<%= jadwal.JadwalID %>" method="POST">
-                                        <button type="submit">Undo</button>
+                                        <button type="submit">Batalkan</button>
                                     </form>
                                 <% } else { %>
                                     <span>Status tidak valid</span>
                                 <% } %>
                             </td>
-                            <td><%= jadwal.StatusPersetujuan %></td>
+                            <td><%= jadwal.Status %></td>
                         </tr>
                     <% }); %>
                 </tbody>
