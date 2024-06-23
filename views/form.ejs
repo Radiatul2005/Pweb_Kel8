@@ -10,7 +10,7 @@
 </head>
 <body class="bg-gray-200">
     <%- include('partials/navbartegar.ejs') %>
-    <div class="flex flex-col flex-1 overflow-hidden">
+    <div class="flex flex-col flex-1 overflow-hidden" style="margin-left: 250px;">
         <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200" style="background-color: white;">
             <div class="container px-6 py-8 mx-auto">
                 <h3 class="text-3xl font-medium text-gray-700" style="background-color: white;">Form Pendaftaran</h3>
@@ -44,7 +44,7 @@
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Waktu Sidang</label>
-                                        <input type="text" name="time" class="w-full mt-1 form-input" placeholder="Jadwal Sidang" style="border-color: #426142; border-width: 1px; border-radius: 7px; height: 40px; padding-left: 5px;">
+                                        <input type="datetime-local" name="waktu" class="w-full mt-1 form-input" placeholder="Jadwal Sidang" style="border-color: #426142; border-width: 1px; border-radius: 7px; height: 40px; padding-left: 5px;">
                                         <div class="flex justify-end mt-8" style="justify-content: right;">
                                             <button type="button" class="px-4 py-2 text-white rounded-md hover:bg-indigo-500"  onclick="window.location.href='/manajemen_jadwal'" style="background-color: #4D6A49;">Waktu Sidang</button>
                                         </div>
