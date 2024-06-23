@@ -6,12 +6,13 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const moment = require('moment');
-
 // Import routes
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
+const adminLoginRouter = require('./routes/adminLogin');
 const dashboardRouter = require('./routes/dashboard');
+const dashboardAdminRouter = require('./routes/dashboardAdmin');
 const profileRouter = require('./routes/Profile');
 const editRouter = require('./routes/edit');
 const ubahpaswordRouter = require('./routes/ubah_pasword');
@@ -22,9 +23,15 @@ const manajemen_jadwal = require('./routes/manajemen_jadwal');
 const evaluasi_nilai = require('./routes/evaluasi_nilai');
 const menyetujui = require('./routes/menyetujui');
 const detailRiwayatRouter = require('./routes/detailRiwayat');
+<<<<<<< HEAD
 const penilaianRouter = require('./routes/penilaian');
 
 
+=======
+const inputnilaiRouter = require('./routes/inputnilai');
+const dokumenRouter = require('./routes/dokumen');
+const contohdokumenRouter = require('./routes/contohdokumen');
+>>>>>>> b82ce413384bd997b40cc5b8f1c0a1e24639d42d
 const app = express();
 
 // Setup session
@@ -59,7 +66,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
+app.use('/adminLogin', adminLoginRouter);
 app.use('/dashboard', dashboardRouter);
+app.use('/dashboardAdmin', dashboardAdminRouter);
 app.use('/profile', profileRouter);
 app.use('/editprofile', editRouter);
 app.use('/ubah_pasword', ubahpaswordRouter);
@@ -70,8 +79,14 @@ app.use('/manajemen_jadwal', manajemen_jadwal);
 app.use('/evaluasi_nilai', evaluasi_nilai);
 app.use('/menyetujui', menyetujui);
 app.use('/detailRiwayat', detailRiwayatRouter);
+<<<<<<< HEAD
 app.use('/penilaian', penilaianRouter);
 
+=======
+app.use('/inputnilai', inputnilaiRouter);
+app.use('/dokumen', dokumenRouter);
+app.use('/contohdokumen', contohdokumenRouter);
+>>>>>>> b82ce413384bd997b40cc5b8f1c0a1e24639d42d
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {

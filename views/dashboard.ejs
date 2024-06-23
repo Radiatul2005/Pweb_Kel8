@@ -9,20 +9,20 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-200">
-    <%- include('partials/navbar.ejs') %>
-    <div class="flex flex-col flex-1 overflow-hidden" style="margin-left: 280px; margin-top: -520px;">
+    <%- include('partials/navbartegar.ejs') %>
+    <div class="flex flex-col flex-1 overflow-hidden">
         <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200" style="background-color: white;">
             <div class="container px-6 py-8 mx-auto">
                 <h3 class="text-3xl font-medium text-gray-700">Welcome...</h3>
-                <div style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px; border-radius: 10%; background-color: white; width: fit-content; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
-                    <div class="flex justify-end mt-8" style="justify-content: left; margin-top: 5px;">
+                <div style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px; border-radius: 10%; background-color: white; width: fit-content; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); margin-top: 40px;">
+                    <div class="flex justify-end mt-8" style="justify-content: left; margin-top: 15px;">
                         <button type="button" class="px-4 py-2 text-white rounded-md hover:bg-indigo-500" style="background-color: #4D6A49; width : 150px;">Daftar Sidang</button>
                     </div>
                     <div class="flex justify-end mt-8" style="justify-content: left;">
-                        <button type="button" class="px-4 py-2 text-white rounded-md hover:bg-indigo-500" style="background-color: #4D6A49; margin-top: -15px; width : 150px;">Jadwal Sidang</button>
+                        <button type="button" class="px-4 py-2 text-white rounded-md hover:bg-indigo-500" style="background-color: #4D6A49; width : 150px; margin-top: -10px;" onclick="window.location.href='/manajemen_jadwal'";>Jadwal Sidang</button>
                     </div>
                     <div class="flex justify-end mt-8" style="justify-content: left;">
-                        <button type="button" class="px-4 py-2 text-white rounded-md hover:bg-indigo-500" style="background-color: #4D6A49; margin-top: -15px; width : 150px;" onclick="window.location.href='/riwayat';">Riwayat Sidang</button>
+                        <button type="button" class="px-4 py-2 text-white rounded-md hover:bg-indigo-500" style="background-color: #4D6A49; width : 150px; margin-top: -10px;" onclick="window.location.href='/riwayat'";>Riwayat Sidang</button>
                     </div>
                 </div>
             </div>
