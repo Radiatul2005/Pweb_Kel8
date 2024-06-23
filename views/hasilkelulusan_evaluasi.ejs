@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Kelulusan dan Evaluasi Sidang</title>
+    <link rel="stylesheet" href="/stylesheets/hasilkelulusan_evaluasi.css">
+    <%- include('partials/navbaradmin.ejs') %>
+</head>
+<body>
+    <div class="main-content">
+        <h1>Hasil Kelulusan dan Evaluasi Sidang</h1>
+
+        <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" id="fileInput" name="fileInput" style="display: none;">
+            <input type="hidden" id="nama" name="nama">
+            <input type="hidden" id="programStudi" name="programStudi">
+            <input type="hidden" id="tanggalSidang" name="tanggalSidang">
+            <button type="button" id="uploadButton">Unggah Berkas Kelulusan</button>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Program Studi</th>
+                    <th>Tanggal Sidang</th>
+                    <th>Hasil Kelulusan & Evaluasi Sidang</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="resultsTable">
+                <% if (data.length > 0) { %>
+                    <% data.forEach((item, index) => { %>
+                        <tr data-id="<%= item.id %>">
+                            <td><%= index + 1 %></td>
+                            <td><%= item.nama %></td>
+                            <td><%= item.programStudi %></td>
+                            <td><%= item.tanggalSidang %></td>
+                            <td class="file-cell">
+                                <% if (item.pathFile) { %>
+                                    <a href="/<%= item.pathFile %>" target="_blank" class="detail-btn">Lihat Detail</a>
+                                <% } else { %>
+                                    File belum diunggah
+                                <% } %>
+                            </td>
+                            <td>
+                                <% if (item.pathFile) { %>
+                                    <button class="send-btn" data-id="<%= item.id %>" onclick="sendFile(this)">Kirim</button>
+                                <% } else { %>
+                                    <button class="upload-btn" data-id="<%= item.id %>" onclick="triggerFileInput(this)">Unggah</button>
+                                    <button class="send-btn" data-id="<%= item.id %>" onclick="sendFile(this)" disabled>Kirim</button>
+                                <% } %>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="6">Tidak ada data</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <!-- Add pagination logic if necessary -->
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Isi Data Sebelum Unggah Berkas</h2>
+            <form id="modalForm">
+                <label for="modalNama">Nama:</label>
+                <input type="text" id="modalNama" name="modalNama" required>
+                <label for="modalProgramStudi">Program Studi:</label>
+                <input type="text" id="modalProgramStudi" name="modalProgramStudi" required>
+                <label for="modalTanggalSidang">Tanggal Sidang:</label>
+                <input type="date" id="modalTanggalSidang" name="modalTanggalSidang" required>
+                <button type="button" id="modalSubmit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('fileInput');
+            let selectedRow = null;
+
+            const modal = document.getElementById('uploadModal');
+            const modalForm = document.getElementById('modalForm');
+            const modalSubmit = document.getElementById('modalSubmit');
+            const modalClose = document.getElementsByClassName('close')[0];
+
+            // When the upload button is clicked, show the modal
+            document.getElementById('uploadButton').addEventListener('click', function() {
+                modal.style.display = 'block';
+            });
+
+            // When the user clicks on <span> (x), close the modal
+            modalClose.onclick = function() {
+                modal.style.display = 'none';
+            };
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            };
+
+            // When modal form is submitted
+            modalSubmit.addEventListener('click', function() {
+                const nama = document.getElementById('modalNama').value;
+                const programStudi = document.getElementById('modalProgramStudi').value;
+                const tanggalSidang = document.getElementById('modalTanggalSidang').value;
+
+                if (nama && programStudi && tanggalSidang) {
+                    document.getElementById('nama').value = nama;
+                    document.getElementById('programStudi').value = programStudi;
+                    document.getElementById('tanggalSidang').value = tanggalSidang;
+
+                    modal.style.display = 'none';
+                    fileInput.click();
+                } else {
+                    alert('Harap isi semua bidang.');
+                }
+            });
+
+            // When a file is selected, upload it
+            fileInput.addEventListener('change', function() {
+                if (selectedRow) {
+                    const formData = new FormData(document.getElementById('uploadForm'));
+                    const id = selectedRow.getAttribute('data-id');
+                    formData.append('id', id);
+
+                    fetch('/upload', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            const fileCell = selectedRow.querySelector('.file-cell');
+                            fileCell.innerHTML = `<a href="/${data.filePath}" target="_blank" class="detail-btn">Lihat Detail</a>`;
+                            const actionCell = selectedRow.querySelector('td:last-child');
+                            actionCell.innerHTML = `<button class="send-btn" data-id="${id}" onclick="sendFile(this)">Kirim</button>`;
+                        } else {
+                            alert('Gagal mengunggah berkas: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        alert('Terjadi kesalahan saat mengunggah berkas: ' + error.message);
+                    })
+                    .finally(() => {
+                        selectedRow = null;
+                    });
+                }
+            });
+        });
+
+        function triggerFileInput(button) {
+            selectedRow = button.closest('tr');
+            document.getElementById('uploadButton').click();
+        }
+
+        function sendFile(button) {
+            const id = button.getAttribute('data-id');
+            fetch(`/sendFile?id=${id}`, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('File berhasil dikirim.');
+                } else {
+                    alert('Gagal mengirim file: ' + data.message);
+                }
+            })
+            .catch(error => {
+                alert('Terjadi kesalahan saat mengirim file: ' + error.message);
+            });
+        }
+    </script>
+</body>
+</html>

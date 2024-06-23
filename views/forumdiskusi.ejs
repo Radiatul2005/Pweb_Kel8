@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forum Diskusi Mahasiswa</title>
+  <link rel="stylesheet" href="/stylesheets/forumdiskusi_mahasiswa.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery for AJAX -->
+  <%- include('partials/navbartegar.ejs') %>
+</head>
+<body>
+  <div class="main-content">
+    <header>
+      <input type="text" placeholder="cari topik diskusi" id="searchBar">
+      <button id="searchButton">Search</button>
+      <button id="newDiscussionButton">Posting diskusi baru</button>
+    </header>
+    <section class="discussions" id="discussions">
+      <!-- Discussion items will be dynamically added here -->
+    </section>
+  </div>
+
+  <div id="newDiscussionModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Posting Diskusi Baru</h2>
+      <form id="newDiscussionForm">
+        <label for="title">Topik:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="datetime">Tanggal dan Waktu:</label>
+        <input type="datetime-local" id="datetime" name="datetime" required>
+        <label for="author">Member :</label>
+        <input type="text" id="author" name="author" required>
+        <button type="submit">Posting</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(() => {
+      const discussionsContainer = $('#discussions');
+
+      // Function to render discussions from localStorage
+      function renderDiscussions() {
+        discussionsContainer.empty(); // Clear existing discussions
+        const discussions = JSON.parse(localStorage.getItem('discussions')) || [];
+        discussions.forEach((discussion, index) => {
+          discussionsContainer.append(`
+            <div class="discussion">
+              <h4>${discussion.title}</h4>
+              <p>${discussion.datetime}</p>
+              <p>${discussion.author}</p>
+              <button class="comment-toggle" data-index="${index}">
+                Toggle Comments
+              </button>
+              <div class="comments" id="comments-${index}" style="display: none;">
+                ${renderComments(discussion.comments)}
+                <form class="comment-form" data-index="${index}">
+                  <input type="text" placeholder="Tuliskan komentar" class="comment-input">
+                  <button type="submit">Kirim</button>
+                </form>
+              </div>
+            </div>
+          `);
+        });
+      }
+
+      // Function to render comments
+      function renderComments(comments = []) {
+        if (comments.length === 0) {
+          return '<p>Tidak ada komentar.</p>';
+        }
+
+        return comments.map(comment => `
+          <div class="comment">
+            <p>${comment}</p>
+          </div>
+        `).join('');
+      }
+
+      // Initial rendering of discussions when page loads
+      renderDiscussions();
+
+      // Search function
+      $('#searchButton').click(() => {
+        const query = $('#searchBar').val().toLowerCase();
+        $('.discussion').each(function() {
+          const title = $(this).find('h4').text().toLowerCase();
+          if (title.includes(query)) {
+            $(this).show();
+          } else {
+            $(this).hide();
+          }
+        });
+      });
+
+      // Open modal for new discussion
+      $('#newDiscussionButton').click(() => {
+        $('#newDiscussionModal').show();
+      });
+
+      // Close modal
+      $('.close').click(() => {
+        $('#newDiscussionModal').hide();
+      });
+
+      // Save new discussion to localStorage
+      $('#newDiscussionForm').submit((event) => {
+        event.preventDefault();
+        const title = $('#title').val();
+        const datetime = $('#datetime').val();
+        const author = $('#author').val();
+
+        // Create new discussion object
+        const newDiscussion = {
+          title: title,
+          datetime: datetime,
+          author: author,
+          comments: [] // Initialize empty comments array
+        };
+
+        // Get current discussions from localStorage
+        let discussions = JSON.parse(localStorage.getItem('discussions')) || [];
+        discussions.push(newDiscussion);
+
+        // Save updated discussions back to localStorage
+        localStorage.setItem('discussions', JSON.stringify(discussions));
+
+        // Render updated discussions
+        renderDiscussions();
+
+        // Close modal and reset form
+        $('#newDiscussionModal').hide();
+        $('#newDiscussionForm')[0].reset();
+      });
+
+      // Handle comment toggle button click
+      $(document).on('click', '.comment-toggle', function() {
+        const index = $(this).data('index');
+        $(`#comments-${index}`).toggle();
+      });
+
+      // Handle comment submission
+      $(document).on('submit', '.comment-form', function(event) {
+        event.preventDefault();
+        const index = $(this).data('index');
+        const commentInput = $(this).find('.comment-input');
+        const commentText = commentInput.val().trim();
+
+        if (commentText) {
+          // Get current discussions from localStorage
+          let discussions = JSON.parse(localStorage.getItem('discussions')) || [];
+          discussions[index].comments.push(commentText);
+
+          // Save updated discussions back to localStorage
+          localStorage.setItem('discussions', JSON.stringify(discussions));
+
+          // Clear input field and render updated discussions
+          commentInput.val('');
+          renderDiscussions();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

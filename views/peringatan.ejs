@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/Peringatan.css">
+    <%- include('partials/navbartegar.ejs') %>
+    <title>Peringatan</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>Welcome, Radiatul Mutmainnah</h1>
+            <p>April 2, 2024</p>
+            <div class="card">
+                <button class="back-button">Back</button>
+                <div class="notification-settings">
+                    <h2>
+                        Pengaturan Peringatan
+                        <label class="switch">
+                            <input type="checkbox" class="toggle-settings">
+                            <span class="slider round"></span>
+                        </label>
+                    </h2>
+                    <div class="settings-content hidden">
+                        <div class="action-buttons">
+                            <button class="cancel-button">Batal</button>
+                            <button class="edit-button">Edit Peringatan</button>
+                            <button class="save-button">Selesai</button>
+                        </div>
+                        <div class="inputs">
+                            <label>Masukan Peringatan</label>
+                            <input type="text">
+                        </div>
+                        <div class="daily-reminder">
+                            <label>Setiap hari</label>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="date-range">
+                            <div>
+                                <label>Mulai</label>
+                                <input type="datetime-local" value="2024-04-25T23:59">
+                            </div>
+                            <div>
+                                <label>Selesai</label>
+                                <input type="datetime-local" value="2024-04-27T23:59">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const saveButton = document.querySelector('.save-button');
+            const toggleSettings = document.querySelector('.toggle-settings');
+            const settingsContent = document.querySelector('.settings-content');
+
+            toggleSettings.addEventListener('change', function() {
+                if (toggleSettings.checked) {
+                    settingsContent.classList.remove('hidden');
+                } else {
+                    settingsContent.classList.add('hidden');
+                }
+            });
+
+            saveButton.addEventListener('click', function() {
+                const reminderInput = document.querySelector('.inputs input');
+                const dailyToggle = document.querySelector('.daily-reminder input[type="checkbox"]');
+                const startDate = document.querySelector('.date-range input[type="datetime-local"]');
+                const endDate = document.querySelectorAll('.date-range input[type="datetime-local"]')[1];
+
+                const reminder = reminderInput.value;
+                const daily = dailyToggle.checked;
+                const start = startDate.value;
+                const end = endDate.value;
+
+                alert('Peringatan disimpan:\n' +
+                    'Reminder: ' + reminder + '\n' +
+                    'Daily: ' + daily + '\n' +
+                    'Start: ' + start + '\n' +
+                    'End: ' + end);
+
+                reminderInput.value = '';
+                dailyToggle.checked = false;
+                startDate.value = '2024-04-25T23:59';
+                endDate.value = '2024-04-27T23:59';
+                settingsContent.classList.add('hidden');
+                toggleSettings.checked = false;
+            });
+
+            const cancelButton = document.querySelector('.cancel-button');
+            cancelButton.addEventListener('click', function() {
+                document.querySelector('.inputs input').value = '';
+                document.querySelector('.daily-reminder input[type="checkbox"]').checked = false;
+                document.querySelector('.date-range input[type="datetime-local"]').value = '2024-04-25T23:59';
+                document.querySelectorAll('.date-range input[type="datetime-local"]')[1].value = '2024-04-27T23:59';
+                alert('Perubahan dibatalkan');
+                settingsContent.classList.add('hidden');
+                toggleSettings.checked = false;
+            });
+
+            const backButton = document.querySelector('.back-button');
+            backButton.addEventListener('click', function() {
+                alert('Kembali ke halaman sebelumnya');
+            });
+
+            const editButton = document.querySelector('.edit-button');
+            editButton.addEventListener('click', function() {
+                alert('Edit Peringatan');
+            });
+        });
+    </script>
+</body>
+</html>
