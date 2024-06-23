@@ -23,15 +23,12 @@ const manajemen_jadwal = require('./routes/manajemen_jadwal');
 const evaluasi_nilai = require('./routes/evaluasi_nilai');
 const menyetujui = require('./routes/menyetujui');
 const detailRiwayatRouter = require('./routes/detailRiwayat');
-<<<<<<< HEAD
 const penilaianRouter = require('./routes/penilaian');
 
 
-=======
 const inputnilaiRouter = require('./routes/inputnilai');
 const dokumenRouter = require('./routes/dokumen');
 const contohdokumenRouter = require('./routes/contohdokumen');
->>>>>>> b82ce413384bd997b40cc5b8f1c0a1e24639d42d
 const app = express();
 
 // Setup session
@@ -79,14 +76,11 @@ app.use('/manajemen_jadwal', manajemen_jadwal);
 app.use('/evaluasi_nilai', evaluasi_nilai);
 app.use('/menyetujui', menyetujui);
 app.use('/detailRiwayat', detailRiwayatRouter);
-<<<<<<< HEAD
 app.use('/penilaian', penilaianRouter);
 
-=======
 app.use('/inputnilai', inputnilaiRouter);
 app.use('/dokumen', dokumenRouter);
 app.use('/contohdokumen', contohdokumenRouter);
->>>>>>> b82ce413384bd997b40cc5b8f1c0a1e24639d42d
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
