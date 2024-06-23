@@ -1,32 +1,54 @@
 const express = require('express');
-const router = express.Router();
+const bcrypt = require('bcryptjs');
+const session = require('express-session');
 const mysql = require('mysql');
+const path = require('path');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
-// Konfigurasi database
+
+const router = express.Router();
+
+
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'login'
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'login'
 });
 
-// Hubungkan ke database
 db.connect((err) => {
-    if (err) {
-        throw err;
-    }
-    console.log('Connected to database');
+  if (err) {
+    console.error('Error connecting to MySQL:', err);
+    return;
+  }
+  console.log('Connected to MySQL database');
 });
 
-// Rute untuk halaman input nilai
+
 router.get('/', (req, res) => {
-    const sql = 'SELECT name FROM form';
-    db.query(sql, (err, results) => {
-        if (err) {
-            return res.status(500).send(err);
-        }
-        res.render('inputnilai', { names: results });
-    });
+  res.render('inputnilai'); 
+});
+
+router.post('/', (req, res) => {
+
+  const {username, dosen_penguji_1, dosen_penguji_2, dosen_penguji_3  } = req.body;
+
+  const query = 'INSERT INTO penilaian (username, dosen_penguji_1, dosen_penguji_2, dosen_penguji_3 ) VALUES (?, ?, ?, ?)';
+  const params = [username, dosen_penguji_1, dosen_penguji_2, dosen_penguji_3 ];
+
+  console.log('Executing SQL query:', query);
+  console.log('Parameters:', params);
+
+  db.query(query, params, (error, results, fields) => {
+    if (error) {
+      console.error('Error inserting form data:', error);
+      res.status(500).send('Error submitting form data');
+    } else {
+      console.log('Form data inserted successfully:', results);
+      res.send('Form submitted successfully');
+    }
+  });
 });
 
 module.exports = router;
