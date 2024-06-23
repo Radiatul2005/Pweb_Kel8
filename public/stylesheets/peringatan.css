@@ -1,0 +1,149 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+}
+h1, h2 {
+    font-size: 2em;
+    margin-left: 40px;
+}
+
+p {
+    font-size: 1em;
+    line-height: 1.5;
+    margin-bottom: 1em;
+    margin-top: 30px;
+    margin-left: 40px;
+}
+
+header {
+    background-color: #f8f8f8;
+    padding: 1em;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.content {
+    flex: 1;
+    padding: 2em;
+    background-color: #f5f5f5;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card {
+    background-color: white;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+    width: 50%;
+    margin-left: 50px;
+}
+
+.back-button {
+    background-color: #294B29;
+    color: white;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 1em;
+}
+
+.notification-settings {
+    margin-top: 1em;
+}
+
+.notification-settings h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+
+.cancel-button, .edit-button, .save-button {
+    background-color: transparent;
+    border: none;
+    color: #294B29;
+    font-size: 1em;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.inputs, .daily-reminder, .date-range {
+    margin-top: 1em;
+}
+
+.inputs input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.date-range div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5em;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #294B29;
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+}

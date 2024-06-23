@@ -15,14 +15,16 @@ const editRouter = require('./routes/edit');
 const ubahpaswordRouter = require('./routes/ubah_pasword');
 const formRouter = require('./routes/form');  // Import the new form route
 const riwayatRouter = require('./routes/riwayat');
-<<<<<<< HEAD
 const laporananalisis = require('./routes/laporananalisis');
 const manajemen_jadwal = require('./routes/manajemen_jadwal');
 const evaluasi_nilai = require('./routes/evaluasi_nilai');
 const menyetujui = require('./routes/menyetujui');
-=======
 const detailRiwayatRouter = require('./routes/detailRiwayat');
->>>>>>> aaa554d6e475960cb1c12d35dc493fb4eeecd41a
+const uploadRouter = require('./routes/upload');
+const pembayaranRouter = require('./routes/pembayaran');
+const hasilkelulusanRouter = require('./routes/hasilkelulusan_evaluasi');
+const peringatanRouter = require('./routes/peringatan');
+const forumdiskusiRouter = require('./routes/forumdiskusi');
 
 const app = express();
 
@@ -56,14 +58,16 @@ app.use('/editprofile', editRouter);
 app.use('/ubah_pasword', ubahpaswordRouter);
 app.use('/form', formRouter); // Use the new form route
 app.use('/riwayat', riwayatRouter);
-<<<<<<< HEAD
 app.use('/laporananalisis', laporananalisis);
 app.use('/manajemen_jadwal', manajemen_jadwal);
 app.use('/evaluasi_nilai', evaluasi_nilai);
 app.use('/menyetujui', menyetujui);
-=======
 app.use('/detailRiwayat', detailRiwayatRouter);
->>>>>>> aaa554d6e475960cb1c12d35dc493fb4eeecd41a
+app.use('/upload', uploadRouter);
+app.use('/pembayaran', pembayaranRouter);
+app.use('/hasilkelulusan_evaluasi', hasilkelulusanRouter);
+app.use('/peringatan', peringatanRouter);
+app.use('/forumdiskusi', forumdiskusiRouter);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
