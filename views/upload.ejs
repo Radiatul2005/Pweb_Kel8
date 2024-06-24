@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Berkas</title>
+    <link rel="stylesheet" href="/stylesheets/upload.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <%- include('partials/navbartegar.ejs') %>
+</head>
+<body>
+    <h1>Data Berkas</h1>
+    <button id="openOtherPageButton">Contoh Dokumen</button>
+    <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="file" style="display: none;" multiple required>
+        <button type="button" id="uploadButton">Upload Berkas</button>
+    </form>
+
+    <div id="fileInfoContainer">
+        <div id="fileCountDisplay">Tampilkan: 0</div>
+        <div id="dataPerPage">Data per halaman</div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Berkas</th>
+                <th>Nama File</th>
+                <th>Lihat File</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <!-- Di bawah tabel -->
+    <div id="pagination">
+        <button id="prevPage">&lt;</button> <!-- Tanda panah ke kiri -->
+        <span id="pageInfo"> 1</span>
+        <button id="nextPage">&gt;</button> <!-- Tanda panah ke kanan -->
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const uploadButton = document.getElementById('uploadButton');
+            const fileInput = document.getElementById('fileInput');
+            const fileCountDisplay = document.getElementById('fileCountDisplay');
+            const tbody = document.querySelector('tbody');
+
+            uploadButton.addEventListener('click', function() {
+                fileInput.click();
+            });
+
+            fileInput.addEventListener('change', function() {
+                if (fileInput.files.length > 0) {
+                    for (let i = 0; i < fileInput.files.length; i++) {
+                        const file = fileInput.files[i];
+                        const newRow = document.createElement('tr');
+                        newRow.innerHTML = `
+                            <td>${tbody.children.length + 1}</td>
+                            <td>${file.name}</td>
+                            <td>${file.name}</td>
+                            <td><a href="${URL.createObjectURL(file)}" target="_blank">Lihat</a></td>
+                            <td>
+                                <a href="#" class="edit" onclick="editRow(this)"><i class="fas fa-edit"></i></a>
+                                <a href="#" class="delete" onclick="deleteRow(this)"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        `;
+                        tbody.appendChild(newRow);
+                    }
+                }
+                updateFileCount();
+            });
+
+            function openOtherPage() {
+                window.open('http://localhost:3000/contohdokumen', '_blank'); // Ganti URL dengan yang diinginkan
+            }
+
+            document.getElementById('openOtherPageButton').addEventListener('click', openOtherPage);
+
+            function updateFileCount() {
+                const fileCount = tbody.children.length;
+                fileCountDisplay.textContent = `Tampilkan: ${fileCount}`;
+            }
+
+            window.deleteRow = function(row) {
+                row.parentNode.parentNode.remove();
+                updateFileCount();
+            }
+
+            window.editRow = function(row) {
+                alert("Anda dapat mengedit data di sini!");
+            }
+
+            const rowsPerPage = 5;
+            let currentPage = 1;
+
+            function nextPage() {
+                const totalRows = tbody.children.length;
+                const maxPage = Math.ceil(totalRows / rowsPerPage);
+                if (currentPage < maxPage) {
+                    currentPage++;
+                    updateTable();
+                }
+            }
+
+            function prevPage() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    updateTable();
+                }
+            }
+
+            function updateTable() {
+                const rows = tbody.children;
+                const startIndex = (currentPage - 1) * rowsPerPage;
+                const endIndex = Math.min(startIndex + rowsPerPage, rows.length);
+
+                for (let i = 0; i < rows.length; i++) {
+                    if (i >= startIndex && i < endIndex) {
+                        rows[i].style.display = 'table-row';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+
+                document.getElementById('pageInfo').textContent = `Page ${currentPage}`;
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                updateTable();
+            });
+        });
+    </script>
+</body>
+</html>

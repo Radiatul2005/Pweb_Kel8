@@ -19,20 +19,14 @@ db.connect((err) => {
   console.log('Connected to MySQL database');
 });
 
-// Route untuk menampilkan form dengan waktu sidang yang dipilih
-router.get('/form_pendaftaran/:waktuSidang', (req, res) => {
-  const waktuSidang = decodeURIComponent(req.params.waktuSidang);
-  console.log('waktuSidang:', waktuSidang);  // Tambahkan log untuk memastikan parameter diterima dengan benar
-  res.render('form', { waktuSidang });
-});
 
-// Route untuk menampilkan form tanpa waktu sidang yang dipilih
-router.get('/form', (req, res) => {
-  res.render('form', { waktuSidang: '' }); 
+
+router.get('/', (req, res) => {
+  res.render('form'); // Render halaman dokumen.ejs
 });
 
 // Route untuk menangani pengiriman form
-router.post('/form', (req, res) => {
+router.post('/', (req, res) => {
   const { name, nim, fakultas, semester, waktu, dosenPembimbing1, dosenPembimbing2, judulSkripsi, deskripsi } = req.body;
 
   const query = 'INSERT INTO form (name, nim, fakultas, semester, waktu, dosenPembimbing1, dosenPembimbing2, judulSkripsi, deskripsi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';

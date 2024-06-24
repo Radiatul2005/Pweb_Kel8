@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran</title>
+    <link rel="stylesheet" href="/stylesheets/pembayaran.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <%- include('partials/navbartegar.ejs') %>
+</head>
+<body>
+    <div class="header-icons">
+        <a href="#" class="notifikasi"><i class="fas fa-bell"></i></a>
+        <a href="#" class="pencarian"><i class="fas fa-search"></i></a>
+    </div>
+    <div class="container">
+        <h1>Pembayaran Pendaftaran Sidang</h1>
+        <div class="informasi">
+            <p><span class="label"><strong>Nama</strong></span> <span class="value"><%= student.nama %></span></p>
+            <p><span class="label"><strong>No. NIM</strong></span> <span class="value"><%= student.nim %></span></p>
+            <p><span class="label"><strong>Fakultas</strong></span> <span class="value"><%= student.fakultas %></span></p>
+            <p><span class="label"><strong>Program Studi</strong></span> <span class="value"><%= student.program_studi %></span></p>
+            <p><span class="label"><strong>Jalur</strong></span> <span class="value"><%= student.jalur %></span></p>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Periode Tahun</th>
+                    <th>Uraian</th>
+                    <th>Total Tagihan</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (payments && payments.length) { %>
+                    <% payments.forEach((payment, index) => { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= payment.periode_tahun %></td>
+                            <td><%= payment.uraian %></td>
+                            <td>Rp <%= payment.total_tagihan %></td>
+                            <td class="table-status"><%= payment.status %></td>
+                        </tr>
+                    <% }); %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="5">Tidak ada data pembayaran yang ditemukan.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <p class="tulisan-pembayaran">Untuk Pembayaran Tagihan Menggunakan Tambahan 3 Digit Kode dibawah ini sebelum NIM/Notes:</p>
+        <ul class="kode-pembayaran">
+            <li>Kode 001 untuk Jenjang S1 (SNMPTN,SBMPTN,SMUPR)</li>
+            <li>Kode 002 untuk Jenjang D3</li>
+            <li>Kode 003 untuk Jenjang S1 (SIMA/MANDIRI)</li>
+            <li>Kode 004 untuk Jenjang S2</li>
+            <li>Kode 005 untuk Jenjang S3</li>
+            <li>Kode 006 untuk Jenjang Profesi</li>
+            <li>Kode 007 untuk Jenjang Spesialis</li> 
+        </ul>
+    </div>
+</body>
+</html>

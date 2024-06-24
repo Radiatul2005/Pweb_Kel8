@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.header-icons {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 20px;
+}
+
+.header-icons a {
+    color: black;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    padding: 20px;
+    max-width: 1400px;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    margin: 0 auto; 
+    margin-left: 17%;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+    margin-left: 5%;
+}
+
+.informasi {
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-align: left;
+    border: none;
+    margin-bottom: 20px;
+    
+}
+
+.informasi p {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    border-bottom: 1px solid #e6dcdc;
+    padding: 10px 0;
+    width: 80%;
+}
+
+.informasi .label {
+    flex: 0 0 150px;
+    font-weight: bold;
+}
+
+.informasi .value {
+    flex: 1;
+}
+
+table {
+    width: 20%;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 30px auto;
+    
+}
+
+table thead {
+    background-color: #294B29;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.table-status {
+    color: red;
+}
+
+.tulisan-pembayaran {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: -400px;
+}
+
+.kode-pembayaran {
+    font-size: 16px;
+    text-align: center;
+    list-style-type: none;
+    text-align: justify;
+}

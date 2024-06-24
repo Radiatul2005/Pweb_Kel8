@@ -1,0 +1,192 @@
+h1 {
+    color: #333;
+    position: absolute;
+    top: 80px;
+    left: 300px;
+}
+input[type="file"] {
+    display: block;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #294B29;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 150px;
+    left: 300px;
+}
+
+button:hover {
+    background-color: #a9afa9;
+}
+
+#fileInfoContainer {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 300px;
+    top: 220px;
+    
+}
+
+#fileCountDisplay, #dataPerPage {
+    font-size: 16px;
+    color: #161212;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    position: absolute;
+    top: 260px;
+    left: 300px;
+    transform: scale(0.8); /* Mengurangi skala tabel menjadi 80% dari ukuran aslinya */
+    transform-origin: top left; /* Titik asal transformasi di kiri atas */
+}
+
+table td:nth-child(4) {
+    text-align: center; 
+}
+
+table td:nth-child(4) a {
+    text-decoration: none; 
+    color: white; 
+    background-color: rgb(6, 160, 114); 
+    padding: 8px 30px; 
+    border-radius: 5px; 
+    display: inline-block; 
+    cursor: pointer; 
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+table td:nth-child(5) {
+    text-align: center; 
+}
+
+table td:nth-child(5) a {
+    text-decoration: none; 
+    color: rgb(17, 12, 12); 
+    padding: 5px 8px; 
+    border-radius: 5px; 
+    cursor: pointer;
+    margin-right: 5px; 
+    background-color: white;
+    border: 1px solid #ccc;
+    display: inline-block; 
+}
+
+table td:nth-child(5) a.delete {
+    color: #dc3545; 
+}
+
+table td:nth-child(5) a.edit {
+    position: relative; 
+    margin-right: 0px; 
+}
+
+table td:nth-child(5) a.edit i {
+    font-size: 14px; 
+}
+
+table td:nth-child(5) a.edit::after {
+    content: ''; 
+    position: absolute;
+    top: 0;
+    right: 10px; 
+    height: 100%;
+    width: 1px;
+    background-color: #ccc; 
+}
+#pagination {
+    text-align: center;
+    margin-top: 20px;
+    position: fixed;
+    right: 20px; /* Memindahkan elemen ke kanan */
+}
+
+#pagination button, #pagination span {
+    font-size: 16px;
+    margin: 0 5px;
+    cursor: pointer;
+    background-color: #f2f2f2; /* Warna latar belakang */
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+#pagination button:hover, #pagination span:hover {
+    background-color: #244c66; /* Warna latar belakang saat dihover */
+}
+#openOtherPageButton {
+    background-color: #294B29;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 150px;
+    left: calc(98% - 150px); /* Menggeser tombol ke kanan sejauh 150px dari sisi kanan */
+    width: auto; /* Lebar sesuai dengan konten */
+}
+/* Hover effect */
+#openOtherPageButton:hover {
+    background-color: #a9afa9; /
+}
+
+/* .sidebar {
+    width: 250px;
+    background-color: #2F4F2F;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.sidebar .profile img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+
+.sidebar .profile p {
+    margin: 10px 0;
+}
+
+.sidebar .menu {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar .menu li {
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    
+}
+.sidebar .menu li:hover {
+    background-color: #111;
+} */
+
+

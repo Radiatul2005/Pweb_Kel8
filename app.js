@@ -23,6 +23,11 @@ const manajemen_jadwal = require('./routes/manajemen_jadwal');
 const evaluasi_nilai = require('./routes/evaluasi_nilai');
 const menyetujui = require('./routes/menyetujui');
 const detailRiwayatRouter = require('./routes/detailRiwayat');
+const uploadRouter = require('./routes/upload');
+const pembayaranRouter = require('./routes/pembayaran');
+const hasilkelulusanRouter = require('./routes/hasilkelulusan_evaluasi');
+const peringatanRouter = require('./routes/peringatan');
+const forumdiskusiRouter = require('./routes/forumdiskusi');
 const penilaianRouter = require('./routes/penilaian');
 
 
@@ -76,6 +81,11 @@ app.use('/manajemen_jadwal', manajemen_jadwal);
 app.use('/evaluasi_nilai', evaluasi_nilai);
 app.use('/menyetujui', menyetujui);
 app.use('/detailRiwayat', detailRiwayatRouter);
+app.use('/upload', uploadRouter);
+app.use('/pembayaran', pembayaranRouter);
+app.use('/hasilkelulusan_evaluasi', hasilkelulusanRouter);
+app.use('/peringatan', peringatanRouter);
+app.use('/forumdiskusi', forumdiskusiRouter);
 app.use('/penilaian', penilaianRouter);
 
 app.use('/inputnilai', inputnilaiRouter);
