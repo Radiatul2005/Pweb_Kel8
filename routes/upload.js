@@ -4,7 +4,6 @@ const path = require('path');
 
 const router = express.Router();
 
-// Konfigurasi Multer
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, path.join(__dirname, '../public/uploads'));
@@ -16,17 +15,16 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Rute untuk halaman upload
+
 router.get('/', (req, res) => {
-    res.render('upload'); // Pastikan tampilan `upload.ejs` ada di folder views
+    res.render('upload'); 
 });
 
-// Rute untuk menangani upload file
+
 router.post('/', upload.single('file'), (req, res) => {
     res.send('File uploaded successfully!');
 });
 
-// Rute untuk melihat file
 router.get('/view-file', (req, res) => {
     const fileName = req.query.fileName;
     const filePath = path.join(__dirname, '../public/uploads', fileName);

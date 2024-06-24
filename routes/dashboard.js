@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const middleware = require('../middleware/auth')
 
-// Route untuk halaman dashboard
 router.get('/', middleware.verifyToken,(req, res) => {
   try {
     if (req.session.loggedin) {

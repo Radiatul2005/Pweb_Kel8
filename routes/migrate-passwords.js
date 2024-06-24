@@ -1,7 +1,6 @@
 const mysql = require('mysql');
 const bcrypt = require('bcryptjs');
 
-// Konfigurasi koneksi ke MySQL
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -9,7 +8,7 @@ const db = mysql.createConnection({
   database: 'login'
 });
 
-// Menghubungkan ke database
+
 db.connect((err) => {
   if (err) {
     console.error('Error connecting to MySQL:', err);
@@ -17,7 +16,7 @@ db.connect((err) => {
   }
   console.log('Connected to MySQL database');
 
-  // Migrasi password
+  
   db.query('SELECT * FROM users', async (err, results) => {
     if (err) {
       console.error('Error in database query:', err);
