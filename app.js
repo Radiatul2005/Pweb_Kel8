@@ -7,9 +7,9 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const moment = require('moment');
 // Import routes
-const indexRouter = require('./routes/index');
+const indexRouter = require('./routes/login');
 const usersRouter = require('./routes/users');
-const loginRouter = require('./routes/login');
+// const loginRouter = require('./routes/login');
 const adminLoginRouter = require('./routes/adminLogin');
 const dashboardRouter = require('./routes/dashboard');
 const dashboardAdminRouter = require('./routes/dashboardAdmin');
@@ -62,7 +62,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Use routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/login', loginRouter);
+// app.use('/login', loginRouter);
 app.use('/adminLogin', adminLoginRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/dashboardAdmin', dashboardAdminRouter);
