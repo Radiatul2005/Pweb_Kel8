@@ -41,23 +41,17 @@
                         <tr>
                             <td><%= jadwal.JadwalID %></td>
                             <td><%= jadwal.NIM %></td>
-                            <td>
-                                <script>
-                                    document.write(moment('<%= jadwal.WaktuSidang %>').format('YYYY-MM-DD HH:mm:ss'));
-                                </script>
-                            </td>
+                            <td><%= jadwal.WaktuSidang %></td>
                             <td><%= jadwal.Ruangan %></td>
                             <td>
-                                <% if (jadwal.Status === 'Belum Ada') { %>
+                                <% if (jadwal.Status === "Belum Ada") { %>
                                     <form action="/manajemen_jadwal/ambil_jadwal/<%= jadwal.JadwalID %>" method="POST">
-                                        <button type="submit">Ambil</button>
+                                        <button type="submit">Ambil Jadwal</button>
                                     </form>
-                                <% } else if (jadwal.Status === 'Menunggu Persetujuan') { %>
+                                <% } else if (jadwal.Status === "Menunggu Persetujuan") { %>
                                     <form action="/manajemen_jadwal/undo_ambil_jadwal/<%= jadwal.JadwalID %>" method="POST">
-                                        <button type="submit">Batalkan</button>
+                                        <button type="submit">Batalkan Pengambilan</button>
                                     </form>
-                                <% } else { %>
-                                    <span>Status tidak valid</span>
                                 <% } %>
                             </td>
                             <td><%= jadwal.Status %></td>

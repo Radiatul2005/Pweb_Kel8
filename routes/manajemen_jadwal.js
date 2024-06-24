@@ -44,12 +44,17 @@ router.get('/', (req, res) => {
 // Route untuk menangani pengambilan jadwal
 router.post('/ambil_jadwal/:jadwalID', (req, res) => {
     const jadwalID = req.params.jadwalID;
-    const updateQuery = 'UPDATE jadwalsidang SET Status = "Menunggu Persetujuan" WHERE JadwalID = ?';
+    const updateQuery = 'UPDATE jadwalsidang SET Status = "Menunggu Persetujuan" WHERE JadwalID = ? AND Status = "Belum Ada"';
     
     db.query(updateQuery, [jadwalID], (err, result) => {
         if (err) {
             console.error('Error updating data:', err);
             req.flash('error_msg', 'Terjadi kesalahan saat mengambil jadwal.');
+            res.redirect('/manajemen_jadwal');
+            return;
+        }
+        if (result.affectedRows === 0) {
+            req.flash('error_msg', 'Jadwal tidak valid atau sudah diambil.');
             res.redirect('/manajemen_jadwal');
             return;
         }
@@ -62,12 +67,17 @@ router.post('/ambil_jadwal/:jadwalID', (req, res) => {
 // Route untuk menangani undo pengambilan jadwal
 router.post('/undo_ambil_jadwal/:jadwalID', (req, res) => {
     const jadwalID = req.params.jadwalID;
-    const updateQuery = 'UPDATE jadwalsidang SET Status = "Menunggu Persetujuan" WHERE JadwalID = ?';
+    const updateQuery = 'UPDATE jadwalsidang SET Status = "Belum Ada" WHERE JadwalID = ? AND Status = "Menunggu Persetujuan"';
     
     db.query(updateQuery, [jadwalID], (err, result) => {
         if (err) {
             console.error('Error updating data:', err);
             req.flash('error_msg', 'Terjadi kesalahan saat mengembalikan jadwal.');
+            res.redirect('/manajemen_jadwal');
+            return;
+        }
+        if (result.affectedRows === 0) {
+            req.flash('error_msg', 'Jadwal tidak valid atau sudah disetujui.');
             res.redirect('/manajemen_jadwal');
             return;
         }

@@ -43,6 +43,26 @@ router.get('/', (req, res) => {
     });
 });
 
+// Route untuk menambahkan jadwal
+router.post('/tambah_jadwal', (req, res) => {
+    const { NIM, WaktuSidang, Ruangan } = req.body;
+    const status = 'Menunggu Persetujuan';
+    const insertQuery = 'INSERT INTO jadwalsidang (NIM, WaktuSidang, Ruangan, Status) VALUES (?, ?, ?, ?)';
+    
+    db.query(insertQuery, [NIM, WaktuSidang, Ruangan, status], (err, result) => {
+        if (err) {
+            console.error('Error inserting data:', err);
+            req.flash('error_msg', 'Terjadi kesalahan saat menambahkan jadwal.');
+            res.redirect('/menyetujui');
+            return;
+        }
+
+        console.log(`Jadwal sidang untuk NIM ${NIM} telah ditambahkan.`);
+        req.flash('success_msg', 'Jadwal berhasil ditambahkan.');
+        res.redirect('/menyetujui');
+    });
+});
+
 // Route untuk menyetujui jadwal
 router.post('/setujui_jadwal/:jadwalID', (req, res) => {
     const jadwalID = req.params.jadwalID;
@@ -63,6 +83,5 @@ router.post('/setujui_jadwal/:jadwalID', (req, res) => {
         res.redirect('/menyetujui');
     });
 });
-
 
 module.exports = router;

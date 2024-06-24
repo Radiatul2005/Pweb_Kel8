@@ -23,6 +23,19 @@
             </div>
         <% } %>
 
+        <!-- Form untuk menambahkan jadwal baru -->
+        <div class="form-container">
+            <form action="/menyetujui/tambah_jadwal" method="POST">
+                <label for="NIM">NIM Mahasiswa:</label>
+                <input type="text" id="NIM" name="NIM" required>
+                <label for="WaktuSidang">Waktu Sidang:</label>
+                <input type="datetime-local" id="WaktuSidang" name="WaktuSidang" required>
+                <label for="Ruangan">Ruangan:</label>
+                <input type="text" id="Ruangan" name="Ruangan" required>
+                <button type="submit">Tambah Jadwal</button>
+            </form>
+        </div>
+
         <!-- Tabel Persetujuan Jadwal -->
         <div class="table-container">
             <table>
