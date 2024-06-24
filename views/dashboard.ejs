@@ -9,7 +9,7 @@
 <body>
     <div class="sidebar">
         <div class="profile">
-            <img src="profile_picture_url" alt="Profile Picture">
+            <img src="" alt="Profile Picture">
             <h2>Radiatul Mutmainnah</h2>
         </div>
         <%- include('partials/navbartegar.ejs') %>
@@ -21,12 +21,19 @@
         </header>
         <div class="main-content">
             <div class="overview">
-                <img src="image_url" alt="Building Image">
+                <img src="/image/foto/SidangKu.png" alt="Building Image">
                 
                 <div class="actions">
-                    <button>Daftar Sidang</button>
-                    <button>Jadwal Sidang</button>
-                    <button>Riwayat Sidang</button>
+                    <a href="/form">
+                        <button>Daftar Sidang</button>
+                    </a>
+                    <a href="/manajemen_jadwal">
+                        <button>Jadwal Sidang</button>
+                    </a>
+                    <a href="/riwayat">
+                        <button>Riwayat Sidang</button>
+                    </a>
+                    
                 </div>
             </div>
             
@@ -42,10 +49,7 @@
             <div class="announcements">
                 <h2>Pengumuman</h2>
                 <ul>
-                    <li>Informasi Teknis sid...</li>
-                    <li>Perubahan Jadwal</li>
-                    <li>Jadwal terbaru sido...</li>
-                    <li>...</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, voluptatibus?</li>
                 </ul>
             </div>
         </aside>

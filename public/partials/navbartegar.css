@@ -37,7 +37,7 @@ body {
 
 .sidebar .menu {
     list-style-type: none;
-    padding: 0;
+    padding: 10px 20px;
     width: 100%;
     margin: 0; /* Remove margin */
 }
@@ -70,9 +70,10 @@ body {
 }
 
 .sidebar .menu svg {
-    width: 60px;
-    height: 30px;
+    width: 24px; /* Ensure all icons have the same width */
+    height: 24px; /* Ensure all icons have the same height */
     flex-shrink: 0;
+    margin-right: 10px;
 }
 
 .content {

@@ -4,66 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riwayat Sidang</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        .text-success {
-            color: green;
-        }
-
-        .text-danger {
-            color: red;
-        }
-    </style>
+    <link rel="stylesheet" href="/stylesheets/riwayat.css">
 </head>
 <body class="bg-white">
-    <%- include('partials/navbartegar.ejs') %>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="margin-top: 50px; margin-left: 20px; background: white; width: 1050px; height: fit-content;">
-        <h3 class="text-3xl font-medium text-gray-700" style="background-color: white; margin-bottom: 50px;">Riwayat Sidang</h3>
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 border-b border-gray-300 dark:border-gray-700">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        Sidang Ke-
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Dosen Penguji
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Hari/Tanggal
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Hasil Akhir
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Action
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <% data.forEach(function(item) { %>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <%= item.nomor_sidang %>
-                        </td>
-                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <%= item.dosen_penguji %>
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <%= new Date(item.hari_tanggal).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' }) %>
-                        </td>
-                        <td class="px-6 py-4 font-medium whitespace-nowrap dark:text-white <% if (item.hasil_akhir === 'Lulus') { %> text-success <% } else { %> text-danger <% } %>">
-                            <%= item.hasil_akhir %>
-                        </td>
-                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <a href="/detailRiwayat" style="color: blue; text-decoration: underline;">
-                                View
-                            </a>
-                        </td>
-                    </tr>
-                <% }); %>
-            </tbody>
-        </table>
+    <div class="container">
+        <div class="sidebar">
+            <%- include('partials/navbartegar.ejs') %>
+        </div>
+        <div class="main-content">
+            <div class="table-container">
+                <h3 class="title">Riwayat Sidang</h3>
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Sidang Ke-</th>
+                            <th>Dosen Penguji</th>
+                            <th>Hari/Tanggal</th>
+                            <th>Hasil Akhir</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% data.forEach(function(item) { %>
+                            <tr>
+                                <td><%= item.nomor_sidang %></td>
+                                <td><%= item.dosen_penguji %></td>
+                                <td><%= new Date(item.hari_tanggal).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' }) %></td>
+                                <td class="<% if (item.hasil_akhir === 'Lulus') { %> text-success <% } else { %> text-danger <% } %>"><%= item.hasil_akhir %></td>
+                                <td><a href="/detailRiwayat" class="view-link">View</a></td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-
 </body>
 </html>

@@ -108,39 +108,4 @@ td button {
     cursor: pointer;
 }
 
-/* .sidebar {
-    width: 250px;
-    background-color: #2F4F2F;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
-}
-
-.sidebar .profile img {
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-}
-
-.sidebar .profile p {
-    margin: 10px 0;
-}
-
-.sidebar .menu {
-    list-style-type: none;
-    padding: 0;
-    width: 100%;
-}
-
-.sidebar .menu li {
-    padding: 15px;
-    text-align: center;
-    cursor: pointer;
-    
-}
-.sidebar .menu li:hover {
-    background-color: #111;
-} */
 

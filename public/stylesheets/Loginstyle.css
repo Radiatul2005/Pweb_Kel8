@@ -35,6 +35,8 @@ body {
     margin-bottom: 20px;
     font-family:'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell;
 }
+
+.login
 .login-container label {
     display: block;
     margin-bottom: 5px;
