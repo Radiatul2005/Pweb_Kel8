@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
 
-// Konfigurasi MySQL
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -10,7 +9,6 @@ const db = mysql.createConnection({
     database: 'login'
 });
 
-// Koneksi ke MySQL
 db.connect((err) => {
     if (err) {
         console.error('Error connecting to MySQL:', err);
@@ -19,10 +17,8 @@ db.connect((err) => {
     console.log('Connected to MySQL database');
 });
 
-// Middleware untuk mengatur body-parser
 router.use(express.urlencoded({ extended: true }));
 
-// Route untuk menampilkan halaman contoh dokumen
 router.get('/', (req, res) => {
     const query = 'SELECT filename FROM documents';
     db.query(query, (err, results) => {
@@ -34,13 +30,11 @@ router.get('/', (req, res) => {
     });
 });
 
-// Route untuk menangani permintaan view dokumen
 router.post('/view', (req, res) => {
     const dokumen = req.body.dokumen;
     res.redirect(`/contohdokumen/view/${encodeURIComponent(dokumen)}`);
 });
 
-// Route untuk menampilkan dokumen berdasarkan filename (PDF)
 router.get('/view/:filename', (req, res) => {
     const filename = decodeURIComponent(req.params.filename);
 
@@ -57,7 +51,7 @@ router.get('/view/:filename', (req, res) => {
         }
 
         const document = result[0];
-        res.contentType('application/pdf'); // Set content type to PDF
+        res.contentType('application/pdf'); 
         res.send(document.filedata);
     });
 });

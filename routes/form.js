@@ -22,10 +22,9 @@ db.connect((err) => {
 
 
 router.get('/', (req, res) => {
-  res.render('form'); // Render halaman dokumen.ejs
+  res.render('form'); 
 });
 
-// Route untuk menangani pengiriman form
 router.post('/', (req, res) => {
   const { name, nim, fakultas, semester, waktu, dosenPembimbing1, dosenPembimbing2, judulSkripsi, deskripsi } = req.body;
 

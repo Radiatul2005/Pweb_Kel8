@@ -3,9 +3,8 @@ const router = express.Router();
 const mysql = require('mysql');
 const nodemailer = require('nodemailer');
 const cron = require('node-cron');
-require('dotenv').config(); // Gunakan dotenv untuk variabel lingkungan
+require('dotenv').config(); 
 
-// Buat pool MySQL
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
@@ -13,7 +12,6 @@ const pool = mysql.createPool({
     database: 'login'
 });
 
-// Periksa koneksi ke database
 pool.getConnection((err, connection) => {
     if (err) {
         console.error('Error connecting to database:', err);
@@ -23,20 +21,17 @@ pool.getConnection((err, connection) => {
     }
 });
 
-// Buat transporter untuk mengirim email
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: process.env.EMAIL_USER, // Ambil dari variabel lingkungan
-        pass: process.env.EMAIL_PASS  // Ambil dari variabel lingkungan
+        user: process.env.EMAIL_USER, 
+        pass: process.env.EMAIL_PASS  
     }
 });
 
-// Fungsi untuk mengirim email
 const sendEmail = (to, subject, text) => {
     const mailOptions = {
-        from: process.env.EMAIL_USER, // Gunakan email dari variabel lingkungan
-        to: to,
+        from: process.env.EMAIL_USER, 
         subject: subject,
         text: text
     };
@@ -50,7 +45,7 @@ const sendEmail = (to, subject, text) => {
     });
 };
 
-// Tugas cron untuk memeriksa peringatan setiap jam
+
 cron.schedule('0 * * * *', () => {
     const query = `
         SELECT reminders.*, users.email 
