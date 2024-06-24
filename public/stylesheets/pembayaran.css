@@ -27,17 +27,19 @@ body {
 
 .container {
     padding: 20px;
-    max-width: 1400px; 
-    width: 100%; 
+    max-width: 1400px;
+    width: 100%;
     background-color: white;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     border-radius: 8px;
+    margin: 0 auto; 
+    margin-left: 17%;
 }
+
 h1 {
-    text-align: center;
     color: #333;
     margin-bottom: 20px;
-    margin-left: -700px;
+    margin-left: 5%;
 }
 
 .informasi {
@@ -46,6 +48,7 @@ h1 {
     text-align: left;
     border: none;
     margin-bottom: 20px;
+    
 }
 
 .informasi p {
@@ -67,11 +70,11 @@ h1 {
 }
 
 table {
-    width: 80%;
+    width: 20%;
     border-collapse: collapse;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 30px auto;
-    margin-left: 10px;
+    
 }
 
 table thead {
@@ -83,6 +86,7 @@ table th, table td {
     border: 1px solid #ddd;
     text-align: left;
 }
+
 .table-status {
     color: red;
 }
@@ -93,13 +97,12 @@ table th, table td {
     margin-bottom: 10px;
     font-weight: bold;
     text-align: center;
-    margin-left: -500px;
+    margin-left: -400px;
 }
 
 .kode-pembayaran {
     font-size: 16px;
     text-align: center;
-    margin-left: -30px;
     list-style-type: none;
     text-align: justify;
 }

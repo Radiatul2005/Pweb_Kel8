@@ -45,8 +45,10 @@ table {
     width: 80%;
     border-collapse: collapse;
     position: absolute;
-    top: 260px; 
+    top: 260px;
     left: 300px;
+    transform: scale(0.8); /* Mengurangi skala tabel menjadi 80% dari ukuran aslinya */
+    transform-origin: top left; /* Titik asal transformasi di kiri atas */
 }
 
 table td:nth-child(4) {

@@ -1,29 +1,31 @@
-/* Reset and base styles */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Main container */
 .container {
-  width: 80%;
+  width: 60%;
   max-width: 100px;
-  background-color: #fff; /* Main content background */
+  background-color: #fff; 
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  display: flex; /* Use flexbox for layout */
+  display: flex; 
+  
+   
+
 }
 
-/* Main content */
 .main-content {
-  flex: 1; /* Allow main content to grow */
+  flex: 1; 
   padding: 20px;
-  background-color: #fff; /* Main content background */
+  background-color: #fff; 
+  margin-left: 17%;
 }
 
-/* Header */
+
 header {
   display: flex;
   justify-content: space-between;
@@ -56,7 +58,6 @@ header button:hover {
   background-color: #2E7D32;
 }
 
-/* Discussions list */
 .discussions {
   border-top: 1px solid #ccc;
 }
@@ -76,7 +77,6 @@ header button:hover {
   color: #666;
 }
 
-/* Modal styles */
 .modal {
   display: none;
   position: fixed;
@@ -96,6 +96,7 @@ header button:hover {
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  
 }
 
 .close {
@@ -112,7 +113,6 @@ header button:hover {
   cursor: pointer;
 }
 
-/* Responsiveness */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
